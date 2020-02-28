@@ -1,9 +1,17 @@
 import React from 'react';
-function App() {
+import './App.scss'
+import { Header } from './Components/Header';
+import { Navbar } from './Components/Navbar';
+import { Profile } from './Components/Profile';
+
+const App = () => {
   return (
-    <div className="App">
-      <h1>Hello world!</h1>
+    <div className="app-wrapper">
+      <Header />
+      <Navbar />
+      <Profile />
     </div>
-  );
+    );
 }
+
 export default App;
