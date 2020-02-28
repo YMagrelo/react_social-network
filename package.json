@@ -1,6 +1,6 @@
 {
-  "homepage": "http://YMagrelo.github.io/cra-demo/",
-  "name": "cra-demo",
+  "homepage": "https://ymagrelo.github.io/react_social-network/",
+  "name": "social-network",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
