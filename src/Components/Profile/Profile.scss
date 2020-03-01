@@ -1,0 +1,16 @@
+.content {
+    grid-area: content;
+    border: 1px solid seagreen;
+
+    &__heading-img {
+        width: 100%;
+    }
+
+    &__user-avatar {
+        width: 70px;
+    }
+
+    &__user-info {
+        margin-bottom: 10px;
+    }
+}

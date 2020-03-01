@@ -8,38 +8,3 @@
     grid-gap: 10px;
     color: black;
 }
-
-.header {
-    grid-area: header;
-    border: 1px solid slateblue;
-
-    &__logo {
-      width: 50px;
-    }
-}
-
-.navigation {
-    grid-area: nav;
-    border: 1px solid salmon;
-
-    &__list {
-      margin: 10px 0;
-      padding: 0;
-      list-style: none;
-    }
-}
-
-.content {
-    grid-area: content;
-    border: 1px solid seagreen;
-
-    &__heading-img {
-        width: 100%;
-    }
-
-    &__user-avatar {
-        width: 70px;
-    }
-}
-
-

@@ -1,4 +1,6 @@
 import React from 'react';
+import './Profile.scss';
+import { MyPosts } from './MyPosts/MyPosts';
 
 export const Profile = () => (
   <main className="content">
@@ -17,10 +19,6 @@ export const Profile = () => (
         />
         User info
         </div>
-        <div className="content__post-list">My Posts
-          <div className="content__post">Post 1</div>
-          <div className="content__post">Post 2</div>
-          <div className="content__post">Post 3</div>
-        </div>
+        <MyPosts />
       </main>
 )

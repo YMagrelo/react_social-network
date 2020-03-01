@@ -1,0 +1,9 @@
+.header {
+    grid-area: header;
+    background-color: slateblue;
+    border: 1px solid slateblue;
+
+    &__logo {
+      width: 50px;
+    }
+}
