@@ -1,4 +1,5 @@
 .navigation {
+    padding: 20px;
     grid-area: nav;
     color: #fff;
     background-color: salmon;
@@ -14,4 +15,8 @@
         text-decoration: none;
         color: #fff;
     }
+}
+
+.active {
+  color: blue;
 }

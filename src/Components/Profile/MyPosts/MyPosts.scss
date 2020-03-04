@@ -1,3 +1,7 @@
-.content__post-list {
+.postList {
     padding: 10px;
+
+    &__input {
+        display: block;
+    }
 }
