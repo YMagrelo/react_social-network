@@ -1,14 +1,27 @@
 .dialogs {
     display: grid;
     grid-template-columns: 3fr 7fr;
-    color: blanchedalmond;
 
     &__dialog,
     &__message {
         padding: 10px;
     }
 
-    &__dialog--active {
-      color: gold;
+    &__link {
+      color: black;
     }
+
+    &__input {
+      display: block;
+      margin-bottom: 20px;
+      resize: none;
+  }
+
+    &__button {
+      margin-bottom: 20px;
+    }
+}
+
+.active {
+  color: gold;
 }
