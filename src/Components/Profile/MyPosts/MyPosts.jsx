@@ -4,19 +4,34 @@ import './MyPosts.scss';
 import { Post } from './Post/Post';
 
 export const MyPosts = (props) => {
-  const { posts } = props;
+  const {
+    addPost, updateNewPostText, posts, newPostText,
+  } = props;
+
   const inputValue = React.createRef();
-  const addPost = () => {
-    alert(inputValue.current.value);
+
+  const onPostChange = () => {
+    const text = inputValue.current.value;
+    updateNewPostText(text);
   };
+
+  const addNewPost = () => {
+    addPost();
+  };
+
   return (
     <div className="postList">
       <h3>My Posts</h3>
-      <textarea className="postList__input" ref={inputValue} />
+      <textarea
+        className="postList__input"
+        ref={inputValue}
+        onChange={onPostChange}
+        value={newPostText}
+      />
       <button
         className="postList__button button is-info"
         type="button"
-        onClick={addPost}
+        onClick={addNewPost}
       >
           Add post
       </button>
