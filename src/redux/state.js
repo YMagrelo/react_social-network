@@ -27,7 +27,23 @@ export const state = {
       { id: 5, name: 'Sharon' },
       { id: 6, name: 'Monica' },
     ],
+    newMessageText: '',
   },
+};
+
+export const addNewMessage = () => {
+  const newMessage = {
+    id: 6,
+    message: state.dialogsPage.newMessageText,
+  };
+  state.dialogsPage.messages.push(newMessage);
+  state.dialogsPage.newMessageText = '';
+  renderEntireTree(state);
+};
+
+export const updateNewMessageText = (text) => {
+  state.dialogsPage.newMessageText = text;
+  renderEntireTree(state);
 };
 
 export const addPost = () => {
