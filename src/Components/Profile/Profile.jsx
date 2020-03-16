@@ -7,8 +7,7 @@ import { UserInfo } from './UserInfo/UserInfo';
 export const Profile = (props) => {
   const {
     profilePage,
-    addPost,
-    updateNewPostText,
+    store,
   } = props;
 
   return (
@@ -17,8 +16,7 @@ export const Profile = (props) => {
       <MyPosts
         posts={profilePage.posts}
         newPostText={profilePage.newPostText}
-        addPost={addPost}
-        updateNewPostText={updateNewPostText}
+        store={store}
       />
     </main>
   );

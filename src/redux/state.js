@@ -1,63 +1,71 @@
-import { renderEntireTree } from "../render";
-
-export const state = {
-  profilePage: {
-    posts: [
-      { id: 1, post: 'Hello, how are you?', likes: 4 },
-      { id: 2, post: 'I\'m fine', likes: 8 },
-      { id: 3, post: 'Do you have some weed?', likes: 9 },
-      { id: 4, post: 'I don\'t have', likes: 2 },
-      { id: 5, post: 'I do', likes: 22 },
-    ],
-    newPostText: '',
+export const store = {
+  state: {
+    profilePage: {
+      posts: [
+        { id: 1, post: 'Hello, how are you?', likes: 4 },
+        { id: 2, post: 'I don\'t have', likes: 2 },
+        { id: 3, post: 'I do', likes: 22 },
+      ],
+      newPostText: '',
+    },
+    dialogsPage: {
+      messages: [
+        { id: 1, message: 'Hello, how are you?' },
+        { id: 2, message: 'I don\'t have' },
+        { id: 3, message: 'I do' },
+      ],
+      dialogs: [
+        { id: 1, name: 'Brad' },
+        { id: 2, name: 'Curt' },
+        { id: 3, name: 'Bob' },
+        { id: 4, name: 'Josh' },
+        { id: 5, name: 'Sharon' },
+        { id: 6, name: 'Monica' },
+      ],
+      newMessageText: '',
+    },
   },
-  dialogsPage: {
-    messages: [
-      { id: 1, message: 'Hello, how are you?' },
-      { id: 2, message: 'I\'m fine' },
-      { id: 3, message: 'Do you have some weed?' },
-      { id: 4, message: 'I don\'t have' },
-      { id: 5, message: 'I do' },
-    ],
-    dialogs: [
-      { id: 1, name: 'Brad' },
-      { id: 2, name: 'Curt' },
-      { id: 3, name: 'Bob' },
-      { id: 4, name: 'Josh' },
-      { id: 5, name: 'Sharon' },
-      { id: 6, name: 'Monica' },
-    ],
-    newMessageText: '',
+
+  renderEntireTree() {
+    console.log('khkhkh');
   },
-};
 
-export const addNewMessage = () => {
-  const newMessage = {
-    id: 6,
-    message: state.dialogsPage.newMessageText,
-  };
-  state.dialogsPage.messages.push(newMessage);
-  state.dialogsPage.newMessageText = '';
-  renderEntireTree(state);
-};
+  getState() {
+    return this.state;
+  },
 
-export const updateNewMessageText = (text) => {
-  state.dialogsPage.newMessageText = text;
-  renderEntireTree(state);
-};
+  addNewMessage() {
+    const newMessage = {
+      id: 6,
+      message: this.state.dialogsPage.newMessageText,
+    };
+    this.state.dialogsPage.messages.push(newMessage);
+    this.state.dialogsPage.newMessageText = '';
+    this.renderEntireTree();
+  },
 
-export const addPost = () => {
-  const newPost = {
-    id: 6,
-    post: state.profilePage.newPostText,
-    likes: 0,
-  };
-  state.profilePage.posts.push(newPost);
-  state.profilePage.newPostText = '';
-  renderEntireTree(state);
-};
+  updateNewMessageText(text) {
+    this.state.dialogsPage.newMessageText = text;
+    this.renderEntireTree();
+  },
 
-export const updateNewPostText = (text) => {
-  state.profilePage.newPostText = text;
-  renderEntireTree(state);
+  addPost() {
+    const newPost = {
+      id: 6,
+      post: this.state.profilePage.newPostText,
+      likes: 0,
+    };
+    this.state.profilePage.posts.push(newPost);
+    this.state.profilePage.newPostText = '';
+    this.renderEntireTree();
+  },
+
+  updateNewPostText(text) {
+    this.state.profilePage.newPostText = text;
+    this.renderEntireTree();
+  },
+
+  callback(observer) {
+    this.renderEntireTree = observer;
+  },
 };

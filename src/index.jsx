@@ -1,7 +1,25 @@
-import { state } from './redux/state';
-import { renderEntireTree } from './render';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import App from './App';
+import { store } from './redux/state';
 
-renderEntireTree(state);
+const renderEntireTree = () => {
+  ReactDOM.render(
+    <BrowserRouter>
+      <App
+        state={store.getState()}
+        store={store}
+      />
+    </BrowserRouter>,
+    document.getElementById('root'),
+  );
+};
+
+const som = store.getState();
+renderEntireTree(som);
+
+store.callback(renderEntireTree);
 
 
 // If you want your app to work offline and load faster, you can change

@@ -5,18 +5,18 @@ import { Post } from './Post/Post';
 
 export const MyPosts = (props) => {
   const {
-    addPost, updateNewPostText, posts, newPostText,
+    store, posts, newPostText,
   } = props;
 
   const inputValue = React.createRef();
 
   const onPostChange = () => {
     const text = inputValue.current.value;
-    updateNewPostText(text);
+    store.updateNewPostText(text);
   };
 
   const addNewPost = () => {
-    addPost();
+    store.addPost();
   };
 
   return (

@@ -4,18 +4,18 @@ import './Dialogs.scss';
 import { DialogItem } from './DialogItem/DialogItem';
 import { Message } from './Message/Message';
 
-export const Dialogs = ({ dialogsPage, addNewMessage, updateNewMessageText }) => {
+export const Dialogs = ({ dialogsPage, store }) => {
   const dialogsElement = dialogsPage.dialogs.map((d) => <DialogItem name={d.name} id={d.id} />);
   const messagesElement = dialogsPage.messages.map((m) => <Message message={m.message} />);
   const inputMessage = React.createRef();
 
   const handleMessageInput = () => {
     const text = inputMessage.current.value;
-    updateNewMessageText(text);
+    store.updateNewMessageText(text);
   };
 
   const addMessage = () => {
-    addNewMessage();
+    store.addNewMessage();
   };
 
   return (
