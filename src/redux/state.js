@@ -1,5 +1,6 @@
+/* eslint-disable no-underscore-dangle */
 export const store = {
-  state: {
+  _state: {
     profilePage: {
       posts: [
         { id: 1, post: 'Hello, how are you?', likes: 4 },
@@ -26,46 +27,46 @@ export const store = {
     },
   },
 
-  renderEntireTree() {
-    console.log('khkhkh');
-  },
+  _callSubscriber() {},
 
   getState() {
-    return this.state;
+    return this._state;
   },
 
   addNewMessage() {
     const newMessage = {
       id: 6,
-      message: this.state.dialogsPage.newMessageText,
+      message: this._state.dialogsPage.newMessageText,
     };
-    this.state.dialogsPage.messages.push(newMessage);
-    this.state.dialogsPage.newMessageText = '';
-    this.renderEntireTree();
+    this._state.dialogsPage.messages.push(newMessage);
+    this._state.dialogsPage.newMessageText = '';
+    this._callSubscriber();
   },
 
   updateNewMessageText(text) {
-    this.state.dialogsPage.newMessageText = text;
-    this.renderEntireTree();
+    this._state.dialogsPage.newMessageText = text;
+    this._callSubscriber();
   },
 
   addPost() {
     const newPost = {
       id: 6,
-      post: this.state.profilePage.newPostText,
+      post: this._state.profilePage.newPostText,
       likes: 0,
     };
-    this.state.profilePage.posts.push(newPost);
-    this.state.profilePage.newPostText = '';
-    this.renderEntireTree();
+    this._state.profilePage.posts.push(newPost);
+    this._state.profilePage.newPostText = '';
+    this._callSubscriber();
   },
 
   updateNewPostText(text) {
-    this.state.profilePage.newPostText = text;
-    this.renderEntireTree();
+    this._state.profilePage.newPostText = text;
+    this._callSubscriber();
   },
 
-  callback(observer) {
-    this.renderEntireTree = observer;
+  subscribe(observer) {
+    this._callSubscriber = observer;
   },
 };
+
+window.store = store;

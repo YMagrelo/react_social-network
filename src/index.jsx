@@ -16,10 +16,9 @@ const renderEntireTree = () => {
   );
 };
 
-const som = store.getState();
-renderEntireTree(som);
+renderEntireTree(store.getState());
 
-store.callback(renderEntireTree);
+store.subscribe(renderEntireTree);
 
 
 // If you want your app to work offline and load faster, you can change
