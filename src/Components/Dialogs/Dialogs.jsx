@@ -4,18 +4,17 @@ import './Dialogs.scss';
 import { DialogItem } from './DialogItem/DialogItem';
 import { Message } from './Message/Message';
 
-export const Dialogs = ({ dialogsPage, store }) => {
+export const Dialogs = ({ dialogsPage, updateNewMessageText, sendNewMessage }) => {
   const dialogsElement = dialogsPage.dialogs.map((d) => <DialogItem name={d.name} id={d.id} />);
   const messagesElement = dialogsPage.messages.map((m) => <Message message={m.message} />);
-  const inputMessage = React.createRef();
 
-  const handleMessageInput = () => {
-    const text = inputMessage.current.value;
-    store.updateNewMessageText(text);
+  const handleMessageInput = (event) => {
+    const text = event.target.value;
+    updateNewMessageText(text);
   };
 
-  const addMessage = () => {
-    store.addNewMessage();
+  const onSendMessageClick = () => {
+    sendNewMessage();
   };
 
   return (
@@ -27,14 +26,13 @@ export const Dialogs = ({ dialogsPage, store }) => {
         {messagesElement}
         <textarea
           className="dialogs__input"
-          ref={inputMessage}
           onChange={handleMessageInput}
           value={dialogsPage.newMessageText}
         />
         <button
           type="button"
           className="button is-info dialogs__button"
-          onClick={addMessage}
+          onClick={onSendMessageClick}
         >
           Add message
         </button>

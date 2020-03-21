@@ -5,10 +5,10 @@ import { Route } from 'react-router-dom';
 import { Header } from './Components/Header/Header';
 import { Navbar } from './Components/Navbar/Navbar';
 import { Profile } from './Components/Profile/Profile';
-import { Dialogs } from './Components/Dialogs/Dialogs';
 import { News } from './Components/News/News';
 import { Music } from './Components/Music/Music';
 import { Settings } from './Components/Settings/Settings';
+import { DialogsContainer } from './Components/Dialogs/DialogsContainer';
 
 const App = (props) => (
   <div className="app-wrapper">
@@ -19,7 +19,6 @@ const App = (props) => (
         path="/profile"
         render={() => (
           <Profile
-            profilePage={props.state.profilePage}
             store={props.store}
           />
         )}
@@ -27,8 +26,7 @@ const App = (props) => (
       <Route
         path="/dialogs"
         render={() => (
-          <Dialogs
-            dialogsPage={props.state.dialogsPage}
+          <DialogsContainer
             store={props.store}
           />
         )}
