@@ -10,7 +10,8 @@ import { Music } from './Components/Music/Music';
 import { Settings } from './Components/Settings/Settings';
 import { DialogsContainer } from './Components/Dialogs/DialogsContainer';
 
-const App = (props) => (
+
+const App = () => (
   <div className="app-wrapper">
     <Header />
     <Navbar />
@@ -18,17 +19,13 @@ const App = (props) => (
       <Route
         path="/profile"
         render={() => (
-          <Profile
-            store={props.store}
-          />
+          <Profile />
         )}
       />
       <Route
         path="/dialogs"
         render={() => (
-          <DialogsContainer
-            store={props.store}
-          />
+          <DialogsContainer />
         )}
       />
       <Route path="/news" render={() => <News />} />

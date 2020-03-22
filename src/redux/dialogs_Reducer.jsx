@@ -19,7 +19,7 @@ const initialState = {
     { id: 5, name: 'Sharon' },
     { id: 6, name: 'Monica' },
   ],
-  newMessageText: '',
+  newMessageText: 'next message',
 };
 
 export const dialogsReducer = (state = initialState, action) => {
@@ -29,13 +29,19 @@ export const dialogsReducer = (state = initialState, action) => {
         id: 6,
         message: state.newMessageText,
       };
-      state.messages.push(newMessage);
-      state.newMessageText = '';
-      return state;
+
+      return {
+        ...state,
+        newMessageText: '',
+        messages: [...state.messages, newMessage],
+      };
 
     case UPDATE_NEW_MESSAGE:
-      state.newMessageText = action.text;
-      return state;
+
+      return {
+        ...state,
+        newMessageText: action.text,
+      };
 
     default:
       return state;

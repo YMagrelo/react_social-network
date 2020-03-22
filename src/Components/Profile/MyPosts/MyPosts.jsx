@@ -33,7 +33,7 @@ export const MyPosts = (props) => {
           Add post
       </button>
       {posts.map((post) => (
-        <Post message={post.post} likesCount={post.likes} />
+        <Post message={post.post} likesCount={post.likes} key={post.id} />
       ))}
     </div>
   );
