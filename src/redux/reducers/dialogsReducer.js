@@ -19,7 +19,7 @@ const initialState = {
     { id: 5, name: 'Sharon' },
     { id: 6, name: 'Monica' },
   ],
-  newMessageText: 'next message',
+  newMessageText: '',
 };
 
 export const dialogsReducer = (state = initialState, action) => {

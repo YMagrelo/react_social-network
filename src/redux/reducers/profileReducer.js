@@ -1,11 +1,10 @@
-/* eslint-disable no-param-reassign */
 /* eslint-disable no-case-declarations */
 const ADD_POST = 'ADD_POST';
 const UPDATE_NEW_POST = 'UPDATE_NEW_POST';
 
-export const sendPostCreator = () => ({ type: ADD_POST });
+export const sendPostActionCreator = () => ({ type: ADD_POST });
 
-export const updateNewPostTextCreator = (value) => ({
+export const updateNewPostTextActionCreator = (value) => ({
   type: UPDATE_NEW_POST,
   text: value,
 });
@@ -16,7 +15,7 @@ const initialState = {
     { id: 2, post: 'I don\'t have', likes: 2 },
     { id: 3, post: 'I do', likes: 22 },
   ],
-  newPostText: 'hello amigo',
+  newPostText: '',
 };
 
 export const profileReducer = (state = initialState, action) => {

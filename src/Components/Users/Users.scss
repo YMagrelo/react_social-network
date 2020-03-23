@@ -1,0 +1,42 @@
+.user {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    border: 1px solid ghostwhite;
+    
+    &__avatar {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin: 0 10px 10px;
+        background-color: rgb(245, 225, 225);
+    }
+
+    &__container {
+        width: 50%;
+        height: 100px;
+        border-radius: 10px;
+        
+        padding: 10px;
+        background-color: beige;
+    }
+
+    &__info {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__button {
+        display: block;
+    }
+
+    &__info-location {
+        color: royalblue
+    }
+
+    &__info-status {
+        margin-top: 20px;
+        color: gray
+    }
+}

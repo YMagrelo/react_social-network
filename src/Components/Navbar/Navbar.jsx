@@ -20,6 +20,9 @@ export const Navbar = () => (
       <li className="navigation__item">
         <NavLink className="navigation__link" to="/settings">Settings</NavLink>
       </li>
+      <li className="navigation__item">
+        <NavLink className="navigation__link" to="/users">Find Users</NavLink>
+      </li>
     </ul>
   </nav>
 );

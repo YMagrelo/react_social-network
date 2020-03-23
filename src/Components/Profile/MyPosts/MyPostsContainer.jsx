@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
-// import React from 'react';
 import { connect } from 'react-redux';
-import { updateNewPostTextCreator, sendPostCreator } from '../../../redux/profile_Reducer';
+import { updateNewPostTextActionCreator, sendPostActionCreator } from '../../../redux/reducers/profileReducer';
 import { MyPosts } from './MyPosts';
 
 const mapStateToProps = (state) => ({
@@ -10,8 +9,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  updateNewPostText: (text) => dispatch(updateNewPostTextCreator(text)),
-  sendPost: () => dispatch(sendPostCreator()),
+  updateNewPostText: (text) => dispatch(updateNewPostTextActionCreator(text)),
+  sendPost: () => dispatch(sendPostActionCreator()),
 });
 
 
