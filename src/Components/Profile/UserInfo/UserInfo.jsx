@@ -1,7 +1,6 @@
 import React from 'react';
 import './UserInfo.scss';
 
-
 export const UserInfo = () => (
   <div className="userInfo">
     <div className="userInfo__heading">
