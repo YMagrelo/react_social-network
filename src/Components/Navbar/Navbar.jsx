@@ -12,6 +12,9 @@ export const Navbar = () => (
         <NavLink className="navigation__link" to="/dialogs">Messages</NavLink>
       </li>
       <li className="navigation__item">
+        <NavLink className="navigation__link" to="/users">Users</NavLink>
+      </li>
+      <li className="navigation__item">
         <NavLink className="navigation__link" to="/news">News</NavLink>
       </li>
       <li className="navigation__item">
@@ -19,9 +22,6 @@ export const Navbar = () => (
       </li>
       <li className="navigation__item">
         <NavLink className="navigation__link" to="/settings">Settings</NavLink>
-      </li>
-      <li className="navigation__item">
-        <NavLink className="navigation__link" to="/users">Find Users</NavLink>
       </li>
     </ul>
   </nav>

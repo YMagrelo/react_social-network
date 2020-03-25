@@ -3,13 +3,27 @@
 import React from 'react';
 import './Users.scss';
 import * as axios from 'axios';
+import cn from 'classnames';
 import userLogo from '../../assets/images/user.png';
 
 export class UsersClass extends React.Component {
-  constructor(props) {
-    super(props);
+  componentDidMount() {
     if (this.props.users.length === 0) {
-      axios.get('https://social-network.samuraijs.com/api/1.0/users/', {
+      axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`, {
+        headers: {
+          'API-KEY': '932d6a5e-9f13-471f-b3bb-9a946f84b9b5',
+        },
+      })
+        .then((response) => {
+          this.props.setUsers(response.data.items);
+          this.props.setUsersTotalCount(response.data.totalCount);
+        });
+    }
+  }
+
+  onPageChanged = (pageNumber) => {
+    this.props.setCurrentPage(pageNumber);
+    axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${pageNumber}`, {
         headers: {
           'API-KEY': '932d6a5e-9f13-471f-b3bb-9a946f84b9b5',
         },
@@ -17,12 +31,28 @@ export class UsersClass extends React.Component {
         .then((response) => {
           this.props.setUsers(response.data.items);
         });
-    }
   }
 
   render() {
+    const pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
+    const pages = [];
+    for (let i = 1; i <= pagesCount; i += 1) {
+      pages.push(i);
+    }
+
     return (
       <div>
+        <div className="pageNumber__list">
+          {pages
+            .map((page) => (
+              <span
+                className={cn('pageNumber__item', { 'pageNumber__item--is-active': this.props.currentPage === page })}
+                onClick={() => this.onPageChanged(page)}
+              >
+                {page}
+              </span>
+            ))}
+        </div>
         {this.props.users.map((user) => (
           <div key={user.id} className="user">
             <div>

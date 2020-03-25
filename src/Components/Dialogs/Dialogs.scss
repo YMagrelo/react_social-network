@@ -7,6 +7,10 @@
         padding: 10px;
     }
 
+    &__messages {
+      max-width: 200px;
+    }
+
     &__link {
       color: black;
     }
@@ -23,5 +27,5 @@
 }
 
 .active {
-  color: gold;
+  color: royalblue;
 }

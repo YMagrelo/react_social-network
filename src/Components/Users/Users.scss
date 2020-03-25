@@ -40,3 +40,29 @@
         color: gray
     }
 }
+
+.pageNumber {
+    &__list {
+      text-align: center;
+    }
+    
+    &__item {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        font-size: 10px;
+        line-height: 20px;
+        margin: 5px;
+        border-radius: 3px;
+        border: none;
+        outline: none;
+        background-color: rgb(50, 152, 220);
+        color: #fff;
+        cursor: pointer;
+    }
+
+    &__item--is-active {
+        font-weight: bold;
+        background-color: rgb(9, 119, 192);
+    }
+}

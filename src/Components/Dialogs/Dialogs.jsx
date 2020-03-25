@@ -27,7 +27,8 @@ export const Dialogs = ({ dialogsPage, updateNewMessageText, sendNewMessage }) =
       <div className="dialogs__messages">
         {messagesElement}
         <textarea
-          className="dialogs__input"
+          className="dialogs__input textarea is-small"
+          rows="2"
           onChange={handleMessageInput}
           value={dialogsPage.newMessageText}
         />

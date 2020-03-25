@@ -21,7 +21,8 @@ export const MyPosts = (props) => {
     <div className="postList">
       <h3>My Posts</h3>
       <textarea
-        className="postList__input"
+        className="postList__textarea textarea is-small"
+        rows="2"
         onChange={onPostChange}
         value={newPostText}
       />
