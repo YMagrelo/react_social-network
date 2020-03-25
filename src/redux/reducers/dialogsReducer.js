@@ -8,8 +8,6 @@ export const updateNewMessageTextCreator = (value) => ({ type: UPDATE_NEW_MESSAG
 const initialState = {
   messages: [
     { id: 1, message: 'Hello, how are you?' },
-    { id: 2, message: 'I don\'t have' },
-    { id: 3, message: 'I do' },
   ],
   dialogs: [
     { id: 1, name: 'Brad' },

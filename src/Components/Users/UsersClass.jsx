@@ -9,7 +9,11 @@ export class UsersClass extends React.Component {
   constructor(props) {
     super(props);
     if (this.props.users.length === 0) {
-      axios.get('https://social-network.samuraijs.com/api/1.0/users')
+      axios.get('https://social-network.samuraijs.com/api/1.0/users/', {
+        headers: {
+          'API-KEY': '932d6a5e-9f13-471f-b3bb-9a946f84b9b5',
+        },
+      })
         .then((response) => {
           this.props.setUsers(response.data.items);
         });

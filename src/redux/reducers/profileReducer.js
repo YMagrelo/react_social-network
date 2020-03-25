@@ -12,8 +12,6 @@ export const updateNewPostTextActionCreator = (value) => ({
 const initialState = {
   posts: [
     { id: 1, post: 'Hello, how are you?', likes: 4 },
-    { id: 2, post: 'I don\'t have', likes: 2 },
-    { id: 3, post: 'I do', likes: 22 },
   ],
   newPostText: '',
 };
