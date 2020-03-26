@@ -13,4 +13,6 @@ done:
 done:
 - add pagination to User page;
 
+4.) on 26.03 done: add Preloader component with icon isFetching; 
+
 
