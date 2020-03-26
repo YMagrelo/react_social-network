@@ -9,7 +9,7 @@ done:
 - used server API on Users page;
 - rewrote Find Users page like class component;
 
-3.) task on 25.03 - use life cicle methods and pagination in Users page;
+3.) task on 25.03 - use life cycle methods and pagination in Users page;
 done:
 - add pagination to User page;
 

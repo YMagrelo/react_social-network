@@ -1,3 +1,5 @@
+/* eslint-disable import/no-named-as-default */
+/* eslint-disable import/no-named-as-default-member */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import './App.scss';
@@ -9,7 +11,7 @@ import { News } from './Components/News/News';
 import { Music } from './Components/Music/Music';
 import { Settings } from './Components/Settings/Settings';
 import { DialogsContainer } from './Components/Dialogs/DialogsContainer';
-import { UsersContainer } from './Components/Users/UsersContainer';
+import UsersContainer from './Components/Users/UsersContainer';
 
 
 const App = () => (
