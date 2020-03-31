@@ -4,7 +4,6 @@
 import React from 'react';
 import './App.scss';
 import { Route } from 'react-router-dom';
-import { Header } from './Components/Header/Header';
 import { Navbar } from './Components/Navbar/Navbar';
 import { News } from './Components/News/News';
 import { Music } from './Components/Music/Music';
@@ -12,15 +11,16 @@ import { Settings } from './Components/Settings/Settings';
 import { DialogsContainer } from './Components/Dialogs/DialogsContainer';
 import UsersContainer from './Components/Users/UsersContainer';
 import ProfileContainer from './Components/Profile/ProfileContainer';
+import HeaderContainer from './Components/Header/HeaderContainer';
 
 
 const App = () => (
   <div className="app-wrapper">
-    <Header />
+    <HeaderContainer />
     <Navbar />
     <div className="app-wrapper__content">
       <Route
-        path="/profile"
+        path="/profile/:userId?"
         render={() => (<ProfileContainer />)}
       />
       <Route

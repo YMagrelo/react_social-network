@@ -1,9 +1,33 @@
 .header {
+    display: flex;
+    justify-content: space-between;
     grid-area: header;
-    background-color: slateblue;
-    border: 1px solid slateblue;
+    background-color: rgb(4, 22, 32);
 
     &__logo {
-      width: 50px;
+      width: 75px;
+      height: 100%;
     }
+
+    &__auth {
+      margin-right: 20px;
+    }
+}
+
+.auth {
+  &__login,
+  &__password {
+    display: block;
+    color: #fff;
+  }
+
+  &__login:hover,
+  &__password:hover {
+    color: rgb(228, 202, 169);
+  }
+
+  &__isLogin {
+    color: #fff;
+    margin-right: 20px;
+  }
 }

@@ -3,13 +3,19 @@ import React from 'react';
 import * as axios from 'axios';
 import './Profile.scss';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { Profile } from './Profile';
 import { setUserProfileActionCreator } from '../../redux/reducers/profileReducer';
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
+    let { userId } = this.props.match.params;
     const { setUserProfile } = this.props;
-    axios.get('https://social-network.samuraijs.com/api/1.0/profile/2', {
+
+    if (!userId) {
+      userId = 6640;
+    }
+    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`, {
       headers: {
         'API-KEY': '932d6a5e-9f13-471f-b3bb-9a946f84b9b5',
       },
@@ -23,7 +29,6 @@ class ProfileContainer extends React.Component {
     const { profile } = this.props;
     return (
       <Profile
-        {...this.props}
         profile={profile}
       />
     );
@@ -37,5 +42,6 @@ const setDispatchToProps = (dispatch) => ({
   setUserProfile: (profile) => dispatch(setUserProfileActionCreator(profile)),
 });
 
+const WhithUrlDataContainerComponent = withRouter(ProfileContainer);
 
-export default connect(setMapToProps, setDispatchToProps)(ProfileContainer);
+export default connect(setMapToProps, setDispatchToProps)(WhithUrlDataContainerComponent);
