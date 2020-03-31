@@ -15,4 +15,6 @@ done:
 
 4.) on 26.03 done: add Preloader component with icon isFetching; 
 
+5.) on 31.03 done: add login, authorization Component;
+
 
