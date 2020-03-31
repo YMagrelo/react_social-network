@@ -6,12 +6,12 @@ import './App.scss';
 import { Route } from 'react-router-dom';
 import { Header } from './Components/Header/Header';
 import { Navbar } from './Components/Navbar/Navbar';
-import { Profile } from './Components/Profile/Profile';
 import { News } from './Components/News/News';
 import { Music } from './Components/Music/Music';
 import { Settings } from './Components/Settings/Settings';
 import { DialogsContainer } from './Components/Dialogs/DialogsContainer';
 import UsersContainer from './Components/Users/UsersContainer';
+import ProfileContainer from './Components/Profile/ProfileContainer';
 
 
 const App = () => (
@@ -21,7 +21,7 @@ const App = () => (
     <div className="app-wrapper__content">
       <Route
         path="/profile"
-        render={() => (<Profile />)}
+        render={() => (<ProfileContainer />)}
       />
       <Route
         path="/dialogs"

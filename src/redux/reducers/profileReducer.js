@@ -1,6 +1,7 @@
 /* eslint-disable no-case-declarations */
 const ADD_POST = 'ADD_POST';
 const UPDATE_NEW_POST = 'UPDATE_NEW_POST';
+const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
 export const sendPostActionCreator = () => ({ type: ADD_POST });
 
@@ -9,11 +10,17 @@ export const updateNewPostTextActionCreator = (value) => ({
   text: value,
 });
 
+export const setUserProfileActionCreator = (profile) => ({
+  type: SET_USER_PROFILE,
+  profile,
+});
+
 const initialState = {
   posts: [
     { id: 1, post: 'Hello, how are you?', likes: 4 },
   ],
   newPostText: '',
+  profile: null,
 };
 
 export const profileReducer = (state = initialState, action) => {
@@ -35,6 +42,12 @@ export const profileReducer = (state = initialState, action) => {
       return {
         ...state,
         newPostText: action.text,
+      };
+
+    case SET_USER_PROFILE:
+      return {
+        ...state,
+        profile: action.profile,
       };
 
     default:

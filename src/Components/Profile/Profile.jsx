@@ -4,11 +4,12 @@ import './Profile.scss';
 import { UserInfo } from './UserInfo/UserInfo';
 import { MyPostsContainer } from './MyPosts/MyPostsContainer';
 
-export const Profile = () => {
+export const Profile = (props) => {
+  const { profile } = props;
 
   return (
     <main className="content">
-      <UserInfo />
+      <UserInfo profile={profile} />
       <MyPostsContainer />
     </main>
   );

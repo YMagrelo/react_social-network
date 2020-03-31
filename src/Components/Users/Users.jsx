@@ -3,6 +3,7 @@
 import React from 'react';
 import './Users.scss';
 import cn from 'classnames';
+import { NavLink } from 'react-router-dom';
 import userLogo from '../../assets/images/user.png';
 
 export const Users = (props) => {
@@ -29,11 +30,13 @@ export const Users = (props) => {
       {props.users.map((user) => (
         <div key={user.id} className="user">
           <div>
-            <img
-              src={user.photos.small !== null ? user.photos.small : userLogo}
-              className="user__avatar"
-              alt="user-avatar"
-            />
+            <NavLink to={`/profile/${user.id}`}>
+              <img
+                src={user.photos.small !== null ? user.photos.small : userLogo}
+                className="user__avatar"
+                alt="user-avatar"
+              />
+            </NavLink>
             {user.followed
               ? (
                 <button

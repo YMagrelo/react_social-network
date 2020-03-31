@@ -84,4 +84,4 @@ const mapDispatchToProps = (dispatch) => ({
   toggleIsFetching: (isFetching) => dispatch(setIsFetchingActionCreator(isFetching)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+  export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
