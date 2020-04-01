@@ -1,6 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 import React from 'react';
+import * as axios from 'axios';
 import './Users.scss';
 import cn from 'classnames';
 import { NavLink } from 'react-router-dom';
@@ -42,7 +43,19 @@ export const Users = (props) => {
                 <button
                   className="button is-info user__button"
                   type="button"
-                  onClick={() => props.setUnFollowed(user.id)}
+                  onClick={() => {
+                    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
+                      withCredentials: true,
+                      headers: {
+                        'API-KEY': '932d6a5e-9f13-471f-b3bb-9a946f84b9b5',
+                      },
+                    })
+                      .then((response) => {
+                        if (response.data.resultCode === 0) {
+                          props.setUnFollowed(user.id);
+                        }
+                      });
+                  }}
                 >
                Unfollow
                 </button>
@@ -51,7 +64,19 @@ export const Users = (props) => {
                 <button
                   className="button is-info user__button"
                   type="button"
-                  onClick={() => props.setFollowed(user.id)}
+                  onClick={() => {
+                    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
+                      withCredentials: true,
+                      headers: {
+                        'API-KEY': '932d6a5e-9f13-471f-b3bb-9a946f84b9b5',
+                      },
+                    })
+                      .then((response) => {
+                        if (response.data.resultCode === 0) {
+                          props.setFollowed(user.id);
+                        }
+                      });
+                  }}
                 >
                Follow
                 </button>

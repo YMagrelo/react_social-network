@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import * as axios from 'axios';
 import './Profile.scss';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import * as axios from 'axios';
 import { Profile } from './Profile';
 import { setUserProfileActionCreator } from '../../redux/reducers/profileReducer';
 
