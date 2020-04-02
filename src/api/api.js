@@ -19,5 +19,10 @@ export const getAuthUserData = () => instance.get('auth/me')
 //   .then((response) => response.data);
 
 // export const getUnfollow = (userId) => axios
-//   .delete(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`)
+//   .delete(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, {
+//     withCredentials: true,
+//     headers: {
+//       'API-KEY': '932d6a5e-9f13-471f-b3bb-9a946f84b9b5',
+//     },
+//   })
 //   .then((response) => response.data);

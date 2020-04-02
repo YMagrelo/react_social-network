@@ -9,6 +9,7 @@ import {
   setCurrentPageActionCreator,
   setUsersTotalCountActionCreator,
   setIsFetchingActionCreator,
+  toggleFollowingProgressActionCreator,
 } from '../../redux/reducers/usersReducer';
 import { Users } from './Users';
 import { Preloader } from '../Common/Preloader/Preloader';
@@ -55,6 +56,8 @@ class UsersContainer extends React.Component {
           setFollowed={this.props.setFollowed}
           setUnFollowed={this.props.setUnFollowed}
           onPageChanged={this.onPageChanged}
+          followingProgress={this.props.followingProgress}
+          toggleFollowingProgress={this.props.toggleFollowingProgress}
       />
       </>
     );
@@ -68,6 +71,7 @@ const mapStateToProps = (state) => ({
   totalUsersCount: state.usersPage.totalUsersCount,
   currentPage: state.usersPage.currentPage,
   isFetching: state.usersPage.isFetching,
+  followingProgress: state.usersPage.followingProgress,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -77,6 +81,7 @@ const mapDispatchToProps = (dispatch) => ({
   setCurrentPage: (pageNumber) => dispatch(setCurrentPageActionCreator(pageNumber)),
   setUsersTotalCount: (totalCount) => dispatch(setUsersTotalCountActionCreator(totalCount)),
   toggleIsFetching: (isFetching) => dispatch(setIsFetchingActionCreator(isFetching)),
+  toggleFollowingProgress: (isFetching) => dispatch(toggleFollowingProgressActionCreator(isFetching)),
 });
 
   export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
