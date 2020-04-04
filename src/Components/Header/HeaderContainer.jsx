@@ -4,13 +4,13 @@ import './Header.scss';
 import { connect } from 'react-redux';
 import { Header } from './Header';
 import { setAuthUserDataActionCreator } from '../../redux/reducers/auth_reducer';
-import { getAuthUserData } from '../../api/api';
+import { usersAPI } from '../../api/api';
 
 class HeaderContainer extends React.Component {
   componentDidMount() {
     const { setAuthUserData } = this.props;
 
-    getAuthUserData()
+    usersAPI.getAuthUserData()
       .then((data) => {
         if (data.resultCode === 0) {
           const { id, login, email } = data.data;

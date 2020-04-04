@@ -1,4 +1,6 @@
 /* eslint-disable no-case-declarations */
+import { usersAPI } from '../../api/api';
+
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
@@ -93,10 +95,42 @@ export const setCurrentPageActionCreator = (pageNumber) => (
 export const setUsersTotalCountActionCreator = (totalCount) => (
   { type: SET_USERS_TOTAL_COUNT, totalCount }
 );
-export const setIsFetchingActionCreator = (isFetching) => (
+export const toggleIsFetchingActionCreator = (isFetching) => (
   { type: TOGGLE_IS_FETCHING, isFetching }
 );
-
 export const toggleFollowingProgressActionCreator = (isFetching, userId) => (
   { type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId }
 );
+
+export const getUsersThunkCreator = (pageSize, currentPage) => (dispatch) => {
+  dispatch(toggleIsFetchingActionCreator(true));
+
+  usersAPI.getUsers(pageSize, currentPage)
+    .then((data) => {
+      dispatch(toggleIsFetchingActionCreator(false));
+      dispatch(setUsersActionCreator(data.items));
+      dispatch(setUsersTotalCountActionCreator(data.totalCount));
+    });
+};
+
+export const followThunkCreator = (userId) => (dispatch) => {
+  dispatch(toggleFollowingProgressActionCreator(true, userId));
+  usersAPI.follow(userId)
+    .then((response) => {
+      if (response.data.resultCode === 0) {
+        dispatch(followActionCreator(userId));
+      }
+      dispatch(toggleFollowingProgressActionCreator(false, userId));
+    });
+};
+
+export const unfollowThunkCreator = (userId) => (dispatch) => {
+  dispatch(toggleFollowingProgressActionCreator(true, userId));
+  usersAPI.unfollow(userId)
+    .then((response) => {
+      if (response.data.resultCode === 0) {
+        dispatch(unFollowActionCreator(userId));
+      }
+      dispatch(toggleFollowingProgressActionCreator(false, userId));
+    });
+};
