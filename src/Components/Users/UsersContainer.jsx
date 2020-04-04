@@ -3,10 +3,7 @@ import React from 'react';
 import './Users.scss';
 import { connect } from 'react-redux';
 import {
-  followActionCreator,
-  unFollowActionCreator,
   setCurrentPageActionCreator,
-  toggleFollowingProgressActionCreator,
   getUsersThunkCreator,
   followThunkCreator,
   unfollowThunkCreator,
@@ -17,11 +14,11 @@ import { Preloader } from '../Common/Preloader/Preloader';
 class UsersContainer extends React.Component {
   
   componentDidMount() {
-    this.props.getUsersThunk(this.props.pageSize, this.props.currentPage);
+    this.props.getUsers(this.props.pageSize, this.props.currentPage);
   }
 
   onPageChanged = (pageNumber) => {
-    this.props.getUsersThunk(
+    this.props.getUsers(
       this.props.pageSize, this.props.setCurrentPage(pageNumber)
     );
   }
@@ -43,8 +40,7 @@ class UsersContainer extends React.Component {
           setFollowed={this.props.setFollowed}
           setUnFollowed={this.props.setUnFollowed}
           onPageChanged={this.onPageChanged}
-          followingProgress={this.props.followingProgress}
-          toggleFollowingProgress={this.props.toggleFollowingProgress}
+          followingProgress={this.props.followingProgress} 
           followSuccess={this.props.followSuccess}
           unfollowSuccess={this.props.unfollowSuccess}
       />
@@ -64,11 +60,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setFollowed: (userId) => dispatch(followActionCreator(userId)),
-  setUnFollowed: (userId) => dispatch(unFollowActionCreator(userId)),
   setCurrentPage: (pageNumber) => dispatch(setCurrentPageActionCreator(pageNumber)),
-  toggleFollowingProgress: (isFetching) => dispatch(toggleFollowingProgressActionCreator(isFetching)),
-  getUsersThunk: (pageSize, currentPage) => dispatch(getUsersThunkCreator(pageSize, currentPage)),
+  getUsers: (pageSize, currentPage) => dispatch(getUsersThunkCreator(pageSize, currentPage)),
   followSuccess: (userId) => dispatch(followThunkCreator(userId)),
   unfollowSuccess: (userId) => dispatch(unfollowThunkCreator(userId)),
 });

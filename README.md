@@ -26,4 +26,8 @@ done:
 - follow/unfollow API;
 - add data access layer;
 
+7.) on 04.04 
+done:
+- add thunk to Users page;
+
 

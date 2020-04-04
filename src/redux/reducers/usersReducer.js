@@ -1,4 +1,3 @@
-/* eslint-disable no-case-declarations */
 import { usersAPI } from '../../api/api';
 
 const FOLLOW = 'FOLLOW';
