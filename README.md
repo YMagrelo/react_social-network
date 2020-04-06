@@ -30,4 +30,8 @@ done:
 done:
 - add thunk to Users page;
 
+8.) on 06.04 
+done:
+- add redirect to Login page from Profile & Messages;
+
 

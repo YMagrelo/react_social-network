@@ -2,31 +2,27 @@
 import React from 'react';
 import './Profile.scss';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import * as axios from 'axios';
+import { withRouter, Redirect } from 'react-router-dom';
 import { Profile } from './Profile';
-import { setUserProfileActionCreator } from '../../redux/reducers/profileReducer';
+import { getUserProfileThunkCreator } from '../../redux/reducers/profileReducer';
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
     let { userId } = this.props.match.params;
-    const { setUserProfile } = this.props;
+    const { getUserProfileThunk } = this.props;
 
     if (!userId) {
       userId = 6640;
     }
-    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`, {
-      headers: {
-        'API-KEY': '932d6a5e-9f13-471f-b3bb-9a946f84b9b5',
-      },
-    })
-      .then((response) => {
-        setUserProfile(response.data);
-      });
+
+    getUserProfileThunk(userId);
   }
 
   render() {
-    const { profile } = this.props;
+    const { profile, isAuth } = this.props;
+
+    if (!isAuth) return <Redirect to="/login" />;
+
     return (
       <Profile
         profile={profile}
@@ -37,9 +33,10 @@ class ProfileContainer extends React.Component {
 
 const setMapToProps = (state) => ({
   profile: state.profilePage.profile,
+  isAuth: state.auth.isAuth,
 });
 const setDispatchToProps = (dispatch) => ({
-  setUserProfile: (profile) => dispatch(setUserProfileActionCreator(profile)),
+  getUserProfileThunk: (userId) => dispatch(getUserProfileThunkCreator(userId)),
 });
 
 const WhithUrlDataContainerComponent = withRouter(ProfileContainer);

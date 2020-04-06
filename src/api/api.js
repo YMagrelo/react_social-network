@@ -9,11 +9,6 @@ const instance = axios.create({
 });
 
 export const usersAPI = {
-  getAuthUserData() {
-    return instance.get('auth/me')
-      .then((response) => response.data);
-  },
-
   getUsers(pageSize = 10, currentPage = 1) {
     return instance
       .get(`users?count=${pageSize}&page=${currentPage}`)
@@ -22,11 +17,23 @@ export const usersAPI = {
 
   follow(userId) {
     return instance
-      .post(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`);
+      .post(`follow/${userId}`);
   },
 
   unfollow(userId) {
     return instance
-      .delete(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`);
+      .delete(`follow/${userId}`);
+  },
+
+  getUserProfile(userId) {
+    return instance
+      .get(`profile/${userId}`);
+  },
+};
+
+export const authAPI = {
+  getAuthUserData() {
+    return instance.get('auth/me')
+      .then((response) => response.data);
   },
 };

@@ -1,4 +1,3 @@
-/* eslint-disable import/named */
 import React from 'react';
 import './Users.scss';
 import { connect } from 'react-redux';
@@ -18,9 +17,9 @@ class UsersContainer extends React.Component {
   }
 
   onPageChanged = (pageNumber) => {
+    this.props.setCurrentPage(pageNumber);
     this.props.getUsers(
-      this.props.pageSize, this.props.setCurrentPage(pageNumber)
-    );
+      this.props.pageSize, pageNumber);
   }
 
   render() {

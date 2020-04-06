@@ -1,4 +1,4 @@
-import { usersAPI } from '../../api/api';
+import { authAPI } from '../../api/api';
 
 const SET_USER_DATA = 'SET_USER_DATA';
 
@@ -28,7 +28,7 @@ export const setAuthUserDataActionCreator = (userId, login, email) => (
 );
 
 export const setAuthUserDataThunkCreator = () => (dispatch) => {
-  usersAPI.getAuthUserData()
+  authAPI.getAuthUserData()
     .then((data) => {
       if (data.resultCode === 0) {
         const { id, login, email } = data.data;

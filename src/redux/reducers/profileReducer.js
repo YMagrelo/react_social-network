@@ -1,19 +1,9 @@
 /* eslint-disable no-case-declarations */
+import { usersAPI } from '../../api/api';
+
 const ADD_POST = 'ADD_POST';
 const UPDATE_NEW_POST = 'UPDATE_NEW_POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
-
-export const sendPostActionCreator = () => ({ type: ADD_POST });
-
-export const updateNewPostTextActionCreator = (value) => ({
-  type: UPDATE_NEW_POST,
-  text: value,
-});
-
-export const setUserProfileActionCreator = (profile) => ({
-  type: SET_USER_PROFILE,
-  profile,
-});
 
 const initialState = {
   posts: [
@@ -53,4 +43,23 @@ export const profileReducer = (state = initialState, action) => {
     default:
       return state;
   }
+};
+
+export const sendPostActionCreator = () => ({ type: ADD_POST });
+
+export const updateNewPostTextActionCreator = (value) => ({
+  type: UPDATE_NEW_POST,
+  text: value,
+});
+
+export const setUserProfileActionCreator = (profile) => ({
+  type: SET_USER_PROFILE,
+  profile,
+});
+
+export const getUserProfileThunkCreator = (userId) => (dispatch) => {
+  usersAPI.getUserProfile(userId)
+    .then((response) => {
+      dispatch(setUserProfileActionCreator(response.data));
+    });
 };

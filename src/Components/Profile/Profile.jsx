@@ -5,11 +5,14 @@ import { UserInfo } from './UserInfo/UserInfo';
 import { MyPostsContainer } from './MyPosts/MyPostsContainer';
 
 export const Profile = (props) => {
-  const { profile } = props;
+  const { profile, isAuth } = props;
 
   return (
     <main className="content">
-      <UserInfo profile={profile} />
+      <UserInfo
+        profile={profile}
+        isAuth={isAuth}
+      />
       <MyPostsContainer />
     </main>
   );
