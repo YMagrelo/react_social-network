@@ -1,10 +1,12 @@
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import './Profile.scss';
 import { connect } from 'react-redux';
-import { withRouter, Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { Profile } from './Profile';
 import { getUserProfileThunkCreator } from '../../redux/reducers/profileReducer';
+import { withAuthRedirect } from '../../HOC/withAuthRedirect';
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
@@ -19,9 +21,7 @@ class ProfileContainer extends React.Component {
   }
 
   render() {
-    const { profile, isAuth } = this.props;
-
-    if (!isAuth) return <Redirect to="/login" />;
+    const { profile } = this.props;
 
     return (
       <Profile
@@ -39,6 +39,6 @@ const setDispatchToProps = (dispatch) => ({
   getUserProfileThunk: (userId) => dispatch(getUserProfileThunkCreator(userId)),
 });
 
-const WhithUrlDataContainerComponent = withRouter(ProfileContainer);
-
+const AuthRedirectComponent = withAuthRedirect(ProfileContainer);
+const WhithUrlDataContainerComponent = withRouter(AuthRedirectComponent);
 export default connect(setMapToProps, setDispatchToProps)(WhithUrlDataContainerComponent);

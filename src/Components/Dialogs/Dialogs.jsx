@@ -1,12 +1,11 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import './Dialogs.scss';
-import { Redirect } from 'react-router-dom';
 import { DialogItem } from './DialogItem/DialogItem';
 import { Message } from './Message/Message';
 
 export const Dialogs = ({
-  dialogsPage, updateNewMessageText, sendNewMessage, isAuth,
+  dialogsPage, updateNewMessageText, sendNewMessage,
 }) => {
   const dialogsElement = dialogsPage.dialogs
     .map((d) => <DialogItem name={d.name} id={d.id} key={d.id} />);
@@ -21,8 +20,6 @@ export const Dialogs = ({
   const onSendMessageClick = () => {
     sendNewMessage();
   };
-
-  if (!isAuth) return <Redirect to="/login" />;
 
   return (
     <div className="dialogs">
