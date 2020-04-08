@@ -34,4 +34,8 @@ done:
 done:
 - add redirect to Login page from Profile & Messages;
 
+9.) on 08.04 
+done:
+- add HOC - withAuthRedirect;
+
 
