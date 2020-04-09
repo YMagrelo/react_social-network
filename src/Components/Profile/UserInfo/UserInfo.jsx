@@ -2,6 +2,7 @@
 import React from 'react';
 import './UserInfo.scss';
 import { Preloader } from '../../Common/Preloader/Preloader';
+import userLogo from '../../../assets/images/user.png';
 
 export const UserInfo = (props) => {
   const { profile } = props;
@@ -22,10 +23,11 @@ export const UserInfo = (props) => {
       <div className="userInfo__user-info">
         <img
           className="userInfo__user-avatar"
-          src={profile.photos.large}
+          src={profile.photos.large !== null ? profile.photos.large : userLogo}
           alt="user avatar"
         />
-        {profile.fullName}
+          <p>{profile.fullName}</p>
+          <p>{profile.aboutMe}</p>
       </div>
     </div>
   );
