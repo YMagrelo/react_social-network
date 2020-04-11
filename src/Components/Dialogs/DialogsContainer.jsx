@@ -5,10 +5,10 @@ import { sendMessageCreator, updateNewMessageTextCreator } from '../../redux/red
 import { Dialogs } from './Dialogs';
 import { withAuthRedirect } from '../../HOC/withAuthRedirect';
 
+const AuthRedirectComponent = withAuthRedirect(Dialogs);
 
 const mapStateToProps = (state) => ({
   dialogsPage: state.dialogsPage,
-  isAuth: state.auth.isAuth,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -19,7 +19,5 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(sendMessageCreator());
   },
 });
-
-const AuthRedirectComponent = withAuthRedirect(Dialogs);
 
 export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);

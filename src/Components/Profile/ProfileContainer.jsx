@@ -31,14 +31,15 @@ class ProfileContainer extends React.Component {
   }
 }
 
-const setMapToProps = (state) => ({
+const AuthRedirectComponent = withAuthRedirect(ProfileContainer);
+
+const mapStateToProps = (state) => ({
   profile: state.profilePage.profile,
-  isAuth: state.auth.isAuth,
 });
-const setDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch) => ({
   getUserProfileThunk: (userId) => dispatch(getUserProfileThunkCreator(userId)),
 });
 
-const AuthRedirectComponent = withAuthRedirect(ProfileContainer);
+
 const WhithUrlDataContainerComponent = withRouter(AuthRedirectComponent);
-export default connect(setMapToProps, setDispatchToProps)(WhithUrlDataContainerComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(WhithUrlDataContainerComponent);

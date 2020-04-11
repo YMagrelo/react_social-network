@@ -3,6 +3,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+const mapStateToPropsForRedirect = (state) => ({
+  isAuth: state.auth.isAuth,
+});
 
 export const withAuthRedirect = (Component) => {
   const RedirectComponent = (props) => {
@@ -10,5 +15,7 @@ export const withAuthRedirect = (Component) => {
     return <Component {...props} />;
   };
 
-  return RedirectComponent;
+  const ConnectedAuthRedirectComponent = connect(mapStateToPropsForRedirect)(RedirectComponent);
+
+  return ConnectedAuthRedirectComponent;
 };
