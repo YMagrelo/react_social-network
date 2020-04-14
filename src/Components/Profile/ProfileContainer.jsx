@@ -4,6 +4,7 @@ import React from 'react';
 import './Profile.scss';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { compose } from 'redux';
 import { Profile } from './Profile';
 import { getUserProfileThunkCreator } from '../../redux/reducers/profileReducer';
 import { withAuthRedirect } from '../../HOC/withAuthRedirect';
@@ -31,8 +32,6 @@ class ProfileContainer extends React.Component {
   }
 }
 
-const AuthRedirectComponent = withAuthRedirect(ProfileContainer);
-
 const mapStateToProps = (state) => ({
   profile: state.profilePage.profile,
 });
@@ -40,6 +39,8 @@ const mapDispatchToProps = (dispatch) => ({
   getUserProfileThunk: (userId) => dispatch(getUserProfileThunkCreator(userId)),
 });
 
-
-const WhithUrlDataContainerComponent = withRouter(AuthRedirectComponent);
-export default connect(mapStateToProps, mapDispatchToProps)(WhithUrlDataContainerComponent);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withRouter,
+  withAuthRedirect,
+)(ProfileContainer);
