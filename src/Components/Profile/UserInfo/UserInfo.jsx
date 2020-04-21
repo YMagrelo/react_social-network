@@ -3,6 +3,7 @@ import React from 'react';
 import './UserInfo.scss';
 import { Preloader } from '../../Common/Preloader/Preloader';
 import userLogo from '../../../assets/images/user.png';
+import { ProfileStatus } from './ProfileStatus/ProfileStatus';
 
 export const UserInfo = (props) => {
   const { profile } = props;
@@ -14,11 +15,11 @@ export const UserInfo = (props) => {
   return (
     <div className="userInfo">
       <div className="userInfo__heading">
-        <img
+        {/* <img
           className="userInfo__heading-img"
           src="https://static.brusselsairlines.com/_img/destinationPage2/Ukraine/Kiev-city.jpg"
           alt="kyiv view"
-        />
+        /> */}
       </div>
       <div className="userInfo__user-info">
         <img
@@ -26,8 +27,11 @@ export const UserInfo = (props) => {
           src={profile.photos.large !== null ? profile.photos.large : userLogo}
           alt="user avatar"
         />
-          <p>{profile.fullName}</p>
-          <p>{profile.aboutMe}</p>
+        <p>{profile.fullName}</p>
+        <p>{profile.aboutMe}</p>
+
+        <ProfileStatus status="Here I am" />
+
       </div>
     </div>
   );
