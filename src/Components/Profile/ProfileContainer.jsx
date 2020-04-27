@@ -6,26 +6,33 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { Profile } from './Profile';
-import { getUserProfileThunkCreator } from '../../redux/reducers/profileReducer';
+import {
+  getUserProfileThunkCreator,
+  getStatusProfileThunkCreator,
+  updateStatusProfileThunkCreator 
+} from '../../redux/reducers/profileReducer';
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
     let { userId } = this.props.match.params;
-    const { getUserProfileThunk } = this.props;
+    const { getUserProfileThunk, getStatusProfileThunk } = this.props;
 
     if (!userId) {
       userId = 6640;
     }
 
     getUserProfileThunk(userId);
+    getStatusProfileThunk(userId);
   }
 
   render() {
-    const { profile } = this.props;
+    const { profile, status, updateStatusProfileThunk } = this.props;
 
     return (
       <Profile
         profile={profile}
+        status={status}
+        updateStatusProfileThunk={updateStatusProfileThunk}
       />
     );
   }
@@ -33,9 +40,13 @@ class ProfileContainer extends React.Component {
 
 const mapStateToProps = (state) => ({
   profile: state.profilePage.profile,
+  status: state.profilePage.status,
 });
+
 const mapDispatchToProps = (dispatch) => ({
   getUserProfileThunk: (userId) => dispatch(getUserProfileThunkCreator(userId)),
+  getStatusProfileThunk: (userId) => dispatch(getStatusProfileThunkCreator(userId)),
+  updateStatusProfileThunk: (status) => dispatch(updateStatusProfileThunkCreator(status)),
 });
 
 export default compose(

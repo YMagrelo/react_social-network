@@ -31,7 +31,7 @@ export const MyPosts = (props) => {
         type="button"
         onClick={onAddPost}
       >
-          Add post
+        Add post
       </button>
       {posts.map((post) => (
         <Post message={post.post} likesCount={post.likes} key={post.id} />

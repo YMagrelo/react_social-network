@@ -1,9 +1,10 @@
 /* eslint-disable no-case-declarations */
-import { usersAPI } from '../../api/api';
+import { usersAPI, profileAPI } from '../../api/api';
 
 const ADD_POST = 'ADD_POST';
 const UPDATE_NEW_POST = 'UPDATE_NEW_POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
+const SET_PROFILE_STATUS = 'SET_PROFILE_STATUS';
 
 const initialState = {
   posts: [
@@ -11,6 +12,7 @@ const initialState = {
   ],
   newPostText: '',
   profile: null,
+  status: '',
 };
 
 export const profileReducer = (state = initialState, action) => {
@@ -40,6 +42,12 @@ export const profileReducer = (state = initialState, action) => {
         profile: action.profile,
       };
 
+    case SET_PROFILE_STATUS:
+      return {
+        ...state,
+        status: action.status,
+      };
+
     default:
       return state;
   }
@@ -52,14 +60,35 @@ export const updateNewPostTextActionCreator = (value) => ({
   text: value,
 });
 
-export const setUserProfileActionCreator = (profile) => ({
+const setUserProfileActionCreator = (profile) => ({
   type: SET_USER_PROFILE,
   profile,
+});
+
+const setProfileStatusAC = (status) => ({
+  type: SET_PROFILE_STATUS,
+  status,
 });
 
 export const getUserProfileThunkCreator = (userId) => (dispatch) => {
   usersAPI.getUserProfile(userId)
     .then((response) => {
       dispatch(setUserProfileActionCreator(response.data));
+    });
+};
+
+export const getStatusProfileThunkCreator = (userId) => (dispatch) => {
+  profileAPI.getStatus(userId)
+    .then((response) => {
+      dispatch(setProfileStatusAC(response.data));
+    });
+};
+
+export const updateStatusProfileThunkCreator = (status) => (dispatch) => {
+  profileAPI.updateStatus(status)
+    .then((response) => {
+      if (response.data.resultCode === 0) {
+        dispatch(setProfileStatusAC(status));
+      }
     });
 };

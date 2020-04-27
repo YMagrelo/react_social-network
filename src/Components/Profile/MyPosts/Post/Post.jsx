@@ -13,7 +13,7 @@ export const Post = (props) => {
       />
       {message}
       <div className="post__like">
-Like
+        Like
         {likesCount}
       </div>
     </div>

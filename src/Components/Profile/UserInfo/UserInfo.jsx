@@ -6,7 +6,7 @@ import userLogo from '../../../assets/images/user.png';
 import { ProfileStatus } from './ProfileStatus/ProfileStatus';
 
 export const UserInfo = (props) => {
-  const { profile } = props;
+  const { profile, status, updateStatusProfileThunk } = props;
 
   if (!profile) {
     return <Preloader />;
@@ -30,7 +30,7 @@ export const UserInfo = (props) => {
         <p>{profile.fullName}</p>
         <p>{profile.aboutMe}</p>
 
-        <ProfileStatus status="Here I am" />
+        <ProfileStatus status={status} updateStatusProfileThunk={updateStatusProfileThunk} />
 
       </div>
     </div>
