@@ -9,7 +9,7 @@ import { Profile } from './Profile';
 import {
   getUserProfileThunkCreator,
   getStatusProfileThunkCreator,
-  updateStatusProfileThunkCreator 
+  updateStatusProfileThunkCreator,
 } from '../../redux/reducers/profileReducer';
 
 class ProfileContainer extends React.Component {
