@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types */
-// import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { sendMessageCreator, updateNewMessageTextCreator } from '../../redux/reducers/dialogsReducer';
+import { sendMessageCreator } from '../../redux/reducers/dialogsReducer';
 import { Dialogs } from './Dialogs';
 import { withAuthRedirect } from '../../HOC/withAuthRedirect';
 
@@ -11,11 +10,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  updateNewMessageText: (text) => {
-    dispatch(updateNewMessageTextCreator(text));
-  },
-  sendNewMessage: () => {
-    dispatch(sendMessageCreator());
+  sendNewMessage: (addMessageToDialog) => {
+    dispatch(sendMessageCreator(addMessageToDialog));
   },
 });
 

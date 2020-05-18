@@ -1,9 +1,9 @@
 /* eslint-disable no-case-declarations */
 const ADD_MESSAGE = 'ADD_MESSAGE';
-const UPDATE_NEW_MESSAGE = 'UPDATE_NEW_MESSAGE';
 
-export const sendMessageCreator = () => ({ type: ADD_MESSAGE });
-export const updateNewMessageTextCreator = (value) => ({ type: UPDATE_NEW_MESSAGE, text: value });
+export const sendMessageCreator = (addMessageToDialog) => ({
+  type: ADD_MESSAGE, addMessageToDialog,
+});
 
 const initialState = {
   messages: [
@@ -17,28 +17,16 @@ const initialState = {
     { id: 5, name: 'Sharon' },
     { id: 6, name: 'Monica' },
   ],
-  newMessageText: '',
 };
 
 export const dialogsReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_MESSAGE:
-      const newMessage = {
-        id: 6,
-        message: state.newMessageText,
-      };
+      const body = action.addMessageToDialog;
 
       return {
         ...state,
-        newMessageText: '',
-        messages: [...state.messages, newMessage],
-      };
-
-    case UPDATE_NEW_MESSAGE:
-
-      return {
-        ...state,
-        newMessageText: action.text,
+        messages: [...state.messages, { id: 6, message: body }],
       };
 
     default:
