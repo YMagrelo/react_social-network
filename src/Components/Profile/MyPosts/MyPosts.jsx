@@ -3,6 +3,8 @@ import React from 'react';
 import './MyPosts.scss';
 import { Field, reduxForm } from 'redux-form';
 import { Post } from './Post/Post';
+import { required, maxLengthCreator } from '../../../utilites/validators';
+import { Textarea } from '../../Common/FormsControl/Textarea';
 
 export const MyPosts = (props) => {
   const { posts, sendPost } = props;
@@ -22,6 +24,8 @@ export const MyPosts = (props) => {
   );
 };
 
+const maxLength10 = maxLengthCreator(10);
+
 const AddPostForm = (props) => {
   const {
     handleSubmit,
@@ -31,9 +35,11 @@ const AddPostForm = (props) => {
     <form onSubmit={handleSubmit}>
       <Field
         className="postList__textarea textarea is-small"
-        rows="2"
         name="addPost"
-        component="textarea"
+        component={Textarea}
+        validate={[required, maxLength10]}
+        placeholder="Message here"
+        rows="2"
       />
       <button
         className="postList__button button is-info"
