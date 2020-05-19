@@ -1,10 +1,11 @@
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import './Header.scss';
 import { NavLink } from 'react-router-dom';
 
 export const Header = (props) => {
-  const { authUserData } = props;
+  const { isAuth, handleLogout } = props;
 
   return (
     <header className="header">
@@ -14,17 +15,23 @@ export const Header = (props) => {
         src="https://cdn.dribbble.com/users/23569/screenshots/10858492/media/b9c6767518c11b567eac2b3a057ca51c.jpg"
       />
       <div className="header__auth auth">
-        {authUserData.isAuth
-          ? <div className="auth__isLogin">{authUserData.login}</div>
+        {isAuth
+          ? (
+            <button
+              type="button"
+              className="header__button button is-small"
+              onClick={handleLogout}
+            >
+              Log out
+            </button>
+          )
           : (
             <>
               <NavLink to="/login" className="auth__login">Login</NavLink>
-              <NavLink to="/password" className="auth__password">Password</NavLink>
             </>
           )}
 
       </div>
-
     </header>
   );
 };

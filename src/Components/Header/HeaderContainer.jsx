@@ -1,9 +1,11 @@
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import './Header.scss';
 import { connect } from 'react-redux';
 import { Header } from './Header';
-import { setAuthUserDataThunkCreator } from '../../redux/reducers/auth_reducer';
+import { getAuthUserDataThunkCreator, logoutThunkCreator } from '../../redux/reducers/auth_reducer';
 
 class HeaderContainer extends React.Component {
   componentDidMount() {
@@ -14,7 +16,7 @@ class HeaderContainer extends React.Component {
   render() {
     return (
       <Header
-        authUserData={this.props}
+        {...this.props}
       />
     );
   }
@@ -26,7 +28,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setAuthUserDataThunk: () => dispatch(setAuthUserDataThunkCreator()),
+  setAuthUserDataThunk: () => dispatch(getAuthUserDataThunkCreator()),
+  handleLogout: () => dispatch(logoutThunkCreator()),
 });
 
 
