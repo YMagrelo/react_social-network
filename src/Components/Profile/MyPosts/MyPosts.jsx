@@ -34,12 +34,10 @@ const AddPostForm = (props) => {
   return (
     <form onSubmit={handleSubmit}>
       <Field
-        className="postList__textarea textarea is-small"
         name="addPost"
         component={Textarea}
         validate={[required, maxLength10]}
-        placeholder="Message here"
-        rows="2"
+        placeholder="Post message"
       />
       <button
         className="postList__button button is-info"
