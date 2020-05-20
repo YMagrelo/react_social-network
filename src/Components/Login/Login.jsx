@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import './Login.scss';
@@ -60,6 +61,7 @@ const LoginForm = (props) => {
           validate={[required]}
         />
       </div>
+      {props.error && <div className="login__generalError">{props.error}</div>}
       <div className="login__login-button">
         {isAuth ? (
           <button
