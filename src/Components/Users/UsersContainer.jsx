@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import './Users.scss';
 import { connect } from 'react-redux';
@@ -9,29 +11,36 @@ import {
 } from '../../redux/reducers/usersReducer';
 import { Users } from './Users';
 import { Preloader } from '../Common/Preloader/Preloader';
-import { getUsers, getPageSize, getTotalUsersCount, getIsFetching, getFollowingProgress, getCurrentPage } from '../../redux/selectors/userSelectors';
+import {
+  getUsers, getPageSize, getTotalUsersCount, getIsFetching, getFollowingProgress, getCurrentPage,
+} from '../../redux/selectors/userSelectors';
 
 class UsersContainer extends React.Component {
-  
+  constructor(props) {
+    super(props);
+    this.onPageChanged = this.onPageChanged.bind(this);
+  }
+
   componentDidMount() {
     this.props.getUsers(this.props.pageSize, this.props.currentPage);
   }
 
-  onPageChanged = (pageNumber) => {
+  onPageChanged(pageNumber) {
     this.props.setCurrentPage(pageNumber);
     this.props.getUsers(
-      this.props.pageSize, pageNumber);
+      this.props.pageSize, pageNumber,
+    );
   }
 
   render() {
     return (
       <>
         {this.props.isFetching
-      ? (
-        <Preloader />
-      )
-      : null}
-            
+          ? (
+            <Preloader />
+          )
+          : null}
+
         <Users
           users={this.props.users}
           pageSize={this.props.pageSize}
@@ -40,10 +49,10 @@ class UsersContainer extends React.Component {
           setFollowed={this.props.setFollowed}
           setUnFollowed={this.props.setUnFollowed}
           onPageChanged={this.onPageChanged}
-          followingProgress={this.props.followingProgress} 
+          followingProgress={this.props.followingProgress}
           followSuccess={this.props.followSuccess}
           unfollowSuccess={this.props.unfollowSuccess}
-      />
+        />
       </>
     );
   }
@@ -66,4 +75,4 @@ const mapDispatchToProps = (dispatch) => ({
   unfollowSuccess: (userId) => dispatch(unfollowThunkCreator(userId)),
 });
 
-  export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
