@@ -1,0 +1,31 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 3fr 7fr;
+
+    &__dialog,
+    &__message {
+        padding: 10px;
+    }
+
+    &__messages {
+      max-width: 200px;
+    }
+
+    &__link {
+      color: black;
+    }
+
+    &__input {
+      display: block;
+      margin-bottom: 20px;
+      resize: none;
+  }
+
+    &__button {
+      margin-bottom: 20px;
+    }
+}
+
+.active {
+  color: royalblue;
+}

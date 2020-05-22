@@ -1,0 +1,11 @@
+.userInfo {
+    &__user-avatar {
+        width: 70px;
+        height: 120px;
+        object-fit: cover;
+    }
+
+    &__user-info {
+        padding: 10px;
+    }
+}

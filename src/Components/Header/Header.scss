@@ -1,0 +1,37 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    grid-area: header;
+    background-color: rgb(4, 22, 32);
+
+    &__logo {
+      width: 75px;
+      height: 100%;
+    }
+
+    &__auth {
+      margin-right: 20px;
+    }
+
+    &__button {
+      margin-top: 15%;
+    }
+}
+
+.auth {
+  &__login,
+  &__password {
+    display: block;
+    color: #fff;
+  }
+
+  &__login:hover,
+  &__password:hover {
+    color: rgb(228, 202, 169);
+  }
+
+  &__isLogin {
+    color: #fff;
+    margin-right: 20px;
+  }
+}

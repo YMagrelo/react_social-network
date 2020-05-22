@@ -1,0 +1,16 @@
+.login {
+  padding: 10px;
+  max-width: 250px;
+
+  &__title{
+    margin-bottom: 10px;   
+  }
+
+  &__generalError {
+    color: red;
+  }
+}
+
+.button {
+  padding: 0 25px;
+}
