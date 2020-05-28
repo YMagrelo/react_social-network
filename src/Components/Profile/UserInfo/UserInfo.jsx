@@ -3,7 +3,7 @@ import React from 'react';
 import './UserInfo.scss';
 import { Preloader } from '../../Common/Preloader/Preloader';
 import userLogo from '../../../assets/images/user.png';
-import { ProfileStatus } from './ProfileStatus/ProfileStatus';
+import { ProfileStatusWithHooks } from './ProfileStatus/ProfileStatusWithHooks';
 
 export const UserInfo = (props) => {
   const { profile, status, updateStatusProfileThunk } = props;
@@ -30,7 +30,10 @@ export const UserInfo = (props) => {
         <p>{profile.fullName}</p>
         <p>{profile.aboutMe}</p>
 
-        <ProfileStatus status={status} updateStatusProfileThunk={updateStatusProfileThunk} />
+        <ProfileStatusWithHooks
+          status={status}
+          updateStatusProfileThunk={updateStatusProfileThunk}
+        />
 
       </div>
     </div>
