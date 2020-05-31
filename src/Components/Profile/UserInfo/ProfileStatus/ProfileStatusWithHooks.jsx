@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../UserInfo.scss';
 
 export const ProfileStatusWithHooks = (props) => {
@@ -10,6 +10,10 @@ export const ProfileStatusWithHooks = (props) => {
 
   const [editMode, setEditMode] = useState(false);
   const [localStatus, setLocalStatus] = useState(status);
+
+  useEffect(() => {
+    setLocalStatus(status);
+  }, [status]);
 
   const activateMode = () => {
     setEditMode(true);
