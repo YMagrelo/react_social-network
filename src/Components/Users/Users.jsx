@@ -1,33 +1,23 @@
-/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import './Users.scss';
-import cn from 'classnames';
 import { NavLink } from 'react-router-dom';
 import userLogo from '../../assets/images/user.png';
+import { Pagination } from './Pagination';
 
 export const Users = (props) => {
-  const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-  const pages = [];
-  for (let i = 1; i <= pagesCount; i += 1) {
-    pages.push(i);
-  }
+  const {
+    totalUsersCount, pageSize, users, onPageChanged,
+  } = props;
 
   return (
     <div>
-      <div className="pageNumber__list">
-        {pages
-          .map((page) => (
-            <button
-              className={cn('pageNumber__item', { 'pageNumber__item--is-active': props.currentPage === page })}
-              onClick={() => props.onPageChanged(page)}
-              type="button"
-            >
-              {page}
-            </button>
-          ))}
-      </div>
-      {props.users.map((user) => (
+      <Pagination
+        totalUsersCount={totalUsersCount}
+        pageSize={pageSize}
+        onPageChanged={onPageChanged}
+      />
+      {users.map((user) => (
         <div key={user.id} className="user">
           <div>
             <NavLink to={`/profile/${user.id}`}>
@@ -48,7 +38,7 @@ export const Users = (props) => {
                     props.unfollowSuccess(user.id);
                   }}
                 >
-               Unfollow
+                  Unfollow
                 </button>
               )
               : (
@@ -61,7 +51,7 @@ export const Users = (props) => {
                     props.followSuccess(user.id);
                   }}
                 >
-               Follow
+                  Follow
                 </button>
               )}
           </div>
@@ -69,7 +59,7 @@ export const Users = (props) => {
             <div className="user__info">
               <span className="user__info-name">{user.name}</span>
               <span className="user__info-location">
-                  user.location.city, user.location.country
+                user.location.city, user.location.country
               </span>
             </div>
             <div className="user__info-status">{user.status}</div>

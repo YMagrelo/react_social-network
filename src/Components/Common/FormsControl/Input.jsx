@@ -16,8 +16,7 @@ export const Input = ({ input, meta, ...props }) => {
         rows="2"
       />
       {hasError && (
-      <span className="formControl__is-error"
-      >
+      <span className="formControl__is-error">
         {meta.error}
       </span>
       )}
