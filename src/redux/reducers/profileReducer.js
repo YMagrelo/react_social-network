@@ -1,16 +1,16 @@
 /* eslint-disable no-case-declarations */
 import { usersAPI, profileAPI } from '../../api/api';
 
-const ADD_POST = 'ADD_POST';
-const SET_USER_PROFILE = 'SET_USER_PROFILE';
-const SET_PROFILE_STATUS = 'SET_PROFILE_STATUS';
+const ADD_POST = 'profile/ADD_POST';
+const SET_USER_PROFILE = 'profile/SET_USER_PROFILE';
+const SET_PROFILE_STATUS = 'profile/SET_PROFILE_STATUS';
 
 const initialState = {
   posts: [
     { id: 1, post: 'Hello, how are you?', likes: 4 },
     { id: 2, post: 'Hello, i\'m fine', likes: 5 },
     { id: 3, post: 'empty line', likes: 1 },
-    { id: 4, post: 'My girl, my girl don\'t lie to me, tell me where did you sleep last night, in the pines, in the pines where the sun don\'t ever shine, i would shiver the whole night through', likes: 1 },
+    { id: 4, post: 'My girl, my girl don\'t lie to me, tell me where did you sleep last night, in the pines, in the pines where the sun don\'t ever shine, I would shiver the whole night through', likes: 1 },
   ],
   profile: null,
   status: '',

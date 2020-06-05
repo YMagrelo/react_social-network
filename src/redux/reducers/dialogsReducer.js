@@ -1,5 +1,5 @@
 /* eslint-disable no-case-declarations */
-const ADD_MESSAGE = 'ADD_MESSAGE';
+const ADD_MESSAGE = 'dialogs/ADD_MESSAGE';
 
 export const sendMessageCreator = (addMessageToDialog) => ({
   type: ADD_MESSAGE, addMessageToDialog,
