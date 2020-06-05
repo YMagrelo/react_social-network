@@ -111,22 +111,26 @@ export const getUsersThunkCreator = (pageSize, currentPage) => async (dispatch) 
   dispatch(setUsersTotalCountActionCreator(response.totalCount));
 };
 
-export const followThunkCreator = (userId) => async (dispatch) => {
+const followUnfollowFlow = async (dispatch, userId, apiMethod, actionCreator) => {
   dispatch(toggleFollowingProgressActionCreator(true, userId));
-  const response = await usersAPI.follow(userId);
+  const response = await apiMethod(userId);
 
   if (response.data.resultCode === 0) {
-    dispatch(followActionCreator(userId));
+    dispatch(actionCreator(userId));
   }
   dispatch(toggleFollowingProgressActionCreator(false, userId));
 };
 
-export const unfollowThunkCreator = (userId) => async (dispatch) => {
-  dispatch(toggleFollowingProgressActionCreator(true, userId));
-  const response = await usersAPI.unfollow(userId);
+export const followThunkCreator = (userId) => async (dispatch) => {
+  const apiMethod = usersAPI.follow.bind(usersAPI);
+  const actionCreator = followActionCreator;
 
-  if (response.data.resultCode === 0) {
-    dispatch(unFollowActionCreator(userId));
-  }
-  dispatch(toggleFollowingProgressActionCreator(false, userId));
+  followUnfollowFlow(dispatch, userId, apiMethod, actionCreator);
+};
+
+export const unfollowThunkCreator = (userId) => async (dispatch) => {
+  const apiMethod = usersAPI.unfollow.bind(usersAPI);
+  const actionCreator = unFollowActionCreator;
+
+  followUnfollowFlow(dispatch, userId, apiMethod, actionCreator);
 };
