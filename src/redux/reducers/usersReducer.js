@@ -101,35 +101,32 @@ export const toggleFollowingProgressActionCreator = (isFetching, userId) => (
   { type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId }
 );
 
-export const getUsersThunkCreator = (pageSize, currentPage) => (dispatch) => {
+export const getUsersThunkCreator = (pageSize, currentPage) => async (dispatch) => {
   dispatch(toggleIsFetchingActionCreator(true));
 
-  usersAPI.getUsers(pageSize, currentPage)
-    .then((data) => {
-      dispatch(toggleIsFetchingActionCreator(false));
-      dispatch(setUsersActionCreator(data.items));
-      dispatch(setUsersTotalCountActionCreator(data.totalCount));
-    });
+  const response = await usersAPI.getUsers(pageSize, currentPage);
+
+  dispatch(toggleIsFetchingActionCreator(false));
+  dispatch(setUsersActionCreator(response.items));
+  dispatch(setUsersTotalCountActionCreator(response.totalCount));
 };
 
-export const followThunkCreator = (userId) => (dispatch) => {
+export const followThunkCreator = (userId) => async (dispatch) => {
   dispatch(toggleFollowingProgressActionCreator(true, userId));
-  usersAPI.follow(userId)
-    .then((response) => {
-      if (response.data.resultCode === 0) {
-        dispatch(followActionCreator(userId));
-      }
-      dispatch(toggleFollowingProgressActionCreator(false, userId));
-    });
+  const response = await usersAPI.follow(userId);
+
+  if (response.data.resultCode === 0) {
+    dispatch(followActionCreator(userId));
+  }
+  dispatch(toggleFollowingProgressActionCreator(false, userId));
 };
 
-export const unfollowThunkCreator = (userId) => (dispatch) => {
+export const unfollowThunkCreator = (userId) => async (dispatch) => {
   dispatch(toggleFollowingProgressActionCreator(true, userId));
-  usersAPI.unfollow(userId)
-    .then((response) => {
-      if (response.data.resultCode === 0) {
-        dispatch(unFollowActionCreator(userId));
-      }
-      dispatch(toggleFollowingProgressActionCreator(false, userId));
-    });
+  const response = await usersAPI.unfollow(userId);
+
+  if (response.data.resultCode === 0) {
+    dispatch(unFollowActionCreator(userId));
+  }
+  dispatch(toggleFollowingProgressActionCreator(false, userId));
 };
