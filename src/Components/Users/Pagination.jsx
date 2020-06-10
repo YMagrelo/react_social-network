@@ -4,7 +4,7 @@ import './Users.scss';
 import cn from 'classnames';
 
 export const Pagination = (props) => {
-  const { totalUsersCount, pageSize, onPageChanged } = props;
+  const { totalUsersCount, pageSize, onPageChanged, currentPage } = props;
   const pagesCount = Math.ceil(totalUsersCount / pageSize);
   const pages = [];
   for (let i = 1; i <= pagesCount; i += 1) {
@@ -17,7 +17,7 @@ export const Pagination = (props) => {
       {pages
         .map((page) => (
           <button
-            className={cn('pageNumber__item', { 'pageNumber__item--is-active': props.currentPage === page })}
+            className={cn('pageNumber__item', { 'pageNumber__item--is-active': currentPage === page })}
             onClick={() => onPageChanged(page)}
             type="button"
           >

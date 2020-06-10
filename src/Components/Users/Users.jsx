@@ -13,6 +13,7 @@ export const Users = (props) => {
     followingProgress,
     followSuccess,
     unfollowSuccess,
+    currentPage,
   } = props;
 
   return (
@@ -21,6 +22,7 @@ export const Users = (props) => {
         totalUsersCount={totalUsersCount}
         pageSize={pageSize}
         onPageChanged={onPageChanged}
+        currentPage={currentPage}
       />
       {users.map((user) => (
         <User
