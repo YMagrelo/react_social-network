@@ -6,7 +6,7 @@ import { User } from './User';
 
 export const Users = (props) => {
   const {
-    totalUsersCount,
+    totalItemsCount,
     pageSize,
     users,
     onPageChanged,
@@ -19,7 +19,7 @@ export const Users = (props) => {
   return (
     <div>
       <Pagination
-        totalUsersCount={totalUsersCount}
+        totalItemsCount={totalItemsCount}
         pageSize={pageSize}
         onPageChanged={onPageChanged}
         currentPage={currentPage}

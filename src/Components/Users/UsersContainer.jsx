@@ -44,7 +44,7 @@ class UsersContainer extends React.Component {
         <Users
           users={this.props.users}
           pageSize={this.props.pageSize}
-          totalUsersCount={this.props.totalUsersCount}
+          totalItemsCount={this.props.totalItemsCount}
           currentPage={this.props.currentPage}
           setFollowed={this.props.setFollowed}
           setUnFollowed={this.props.setUnFollowed}
@@ -62,7 +62,7 @@ class UsersContainer extends React.Component {
 const mapStateToProps = (state) => ({
   users: getUsers(state),
   pageSize: getPageSize(state),
-  totalUsersCount: getTotalUsersCount(state),
+  totalItemsCount: getTotalUsersCount(state),
   currentPage: getCurrentPage(state),
   isFetching: getIsFetching(state),
   followingProgress: getFollowingProgress(state),
