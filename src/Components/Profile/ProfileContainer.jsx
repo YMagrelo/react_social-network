@@ -1,3 +1,4 @@
+/* eslint-disable react/sort-comp */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 import React from 'react';
@@ -13,7 +14,7 @@ import {
 } from '../../redux/reducers/profileReducer';
 
 class ProfileContainer extends React.Component {
-  componentDidMount() {
+  refreshProfile() {
     let { userId } = this.props.match.params;
     const { getUserProfileThunk, getStatusProfileThunk } = this.props;
 
@@ -25,16 +26,14 @@ class ProfileContainer extends React.Component {
     getStatusProfileThunk(userId);
   }
 
-  componentDidUpdate() {
-    let { userId } = this.props.match.params;
-    const { getUserProfileThunk, getStatusProfileThunk } = this.props;
+  componentDidMount() {
+    this.refreshProfile();
+  }
 
-    if (!userId) {
-      userId = 6640;
+  componentDidUpdate(prevProps) {
+    if (this.props.match.params.userId !== prevProps.match.params.userId) {
+      this.refreshProfile();
     }
-
-    getUserProfileThunk(userId);
-    getStatusProfileThunk(userId);
   }
 
   render() {
