@@ -11,6 +11,7 @@ export const Profile = (props) => {
     status,
     updateStatusProfileThunk,
     isOwner,
+    savePhoto,
   } = props;
 
   return (
@@ -21,6 +22,7 @@ export const Profile = (props) => {
         status={status}
         updateStatusProfileThunk={updateStatusProfileThunk}
         isOwner={isOwner}
+        savePhoto={savePhoto}
       />
       <MyPostsContainer />
     </main>

@@ -12,11 +12,18 @@ export const UserInfo = (props) => {
     status,
     updateStatusProfileThunk,
     isOwner,
+    savePhoto,
   } = props;
 
   if (!profile) {
     return <Preloader />;
   }
+
+  const onMainPhotoSelected = (e) => {
+    if (e.target.files.length) {
+      savePhoto(e.target.files[0]);
+    }
+  };
 
   return (
     <div className="userInfo">
@@ -33,7 +40,11 @@ export const UserInfo = (props) => {
         <div className="field">
           <div className="file is-small">
             <label className="file-label">
-              <input className="file-input" type="file" name="resume" />
+              <input
+                className="file-input"
+                type="file"
+                onChange={(e) => onMainPhotoSelected(e)}
+              />
               <span className="file-cta">
                 <span className="file-icon">
                   <i className="fas fa-upload" />

@@ -11,6 +11,7 @@ import {
   getUserProfileThunkCreator,
   getStatusProfileThunkCreator,
   updateStatusProfileThunkCreator,
+  savePhotoTC,
 } from '../../redux/reducers/profileReducer';
 
 class ProfileContainer extends React.Component {
@@ -45,6 +46,7 @@ class ProfileContainer extends React.Component {
         profile={profile}
         status={status}
         updateStatusProfileThunk={updateStatusProfileThunk}
+        savePhoto={this.props.savePhoto}
       />
     );
   }
@@ -59,6 +61,7 @@ const mapDispatchToProps = (dispatch) => ({
   getUserProfileThunk: (userId) => dispatch(getUserProfileThunkCreator(userId)),
   getStatusProfileThunk: (userId) => dispatch(getStatusProfileThunkCreator(userId)),
   updateStatusProfileThunk: (status) => dispatch(updateStatusProfileThunkCreator(status)),
+  savePhoto: (file) => dispatch(savePhotoTC(file)),
 });
 
 export default compose(

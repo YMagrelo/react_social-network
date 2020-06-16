@@ -4,6 +4,7 @@ import { usersAPI, profileAPI } from '../../api/api';
 const ADD_POST = 'profile/ADD_POST';
 const SET_USER_PROFILE = 'profile/SET_USER_PROFILE';
 const SET_PROFILE_STATUS = 'profile/SET_PROFILE_STATUS';
+const SET_PHOTO_SUCCESS = 'profile/SET_PHOTO_SUCCESS';
 
 const initialState = {
   posts: [
@@ -43,6 +44,12 @@ export const profileReducer = (state = initialState, action) => {
         status: action.status,
       };
 
+    case SET_PHOTO_SUCCESS:
+      return {
+        ...state,
+        profile: { ...state.profile, photos: action.photos },
+      };
+
     default:
       return state;
   }
@@ -58,6 +65,11 @@ const setUserProfileActionCreator = (profile) => ({
 const setProfileStatusAC = (status) => ({
   type: SET_PROFILE_STATUS,
   status,
+});
+
+const setPhotoSuccesAC = (photos) => ({
+  type: SET_PHOTO_SUCCESS,
+  photos,
 });
 
 export const getUserProfileThunkCreator = (userId) => async (dispatch) => {
@@ -77,5 +89,13 @@ export const updateStatusProfileThunkCreator = (status) => async (dispatch) => {
 
   if (response.data.resultCode === 0) {
     dispatch(setProfileStatusAC(status));
+  }
+};
+
+export const savePhotoTC = (file) => async (dispatch) => {
+  const response = await profileAPI.savePhoto(file);
+
+  if (response.data.resultCode === 0) {
+    dispatch(setPhotoSuccesAC(response.data.data.photos));
   }
 };
