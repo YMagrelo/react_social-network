@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import './UserInfo.scss';
@@ -6,7 +7,12 @@ import userLogo from '../../../assets/images/user.png';
 import { ProfileStatusWithHooks } from './ProfileStatus/ProfileStatusWithHooks';
 
 export const UserInfo = (props) => {
-  const { profile, status, updateStatusProfileThunk } = props;
+  const {
+    profile,
+    status,
+    updateStatusProfileThunk,
+    isOwner,
+  } = props;
 
   if (!profile) {
     return <Preloader />;
@@ -23,6 +29,23 @@ export const UserInfo = (props) => {
         />
         <p>{profile.fullName}</p>
         <p>{profile.aboutMe}</p>
+        {isOwner && (
+        <div className="field">
+          <div className="file is-small">
+            <label className="file-label">
+              <input className="file-input" type="file" name="resume" />
+              <span className="file-cta">
+                <span className="file-icon">
+                  <i className="fas fa-upload" />
+                </span>
+                <span className="file-label">
+                  Choose image…
+                </span>
+              </span>
+            </label>
+          </div>
+        </div>
+        )}
 
         <ProfileStatusWithHooks
           status={status}

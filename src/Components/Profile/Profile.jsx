@@ -6,7 +6,11 @@ import { MyPostsContainer } from './MyPosts/MyPostsContainer';
 
 export const Profile = (props) => {
   const {
-    profile, isAuth, status, updateStatusProfileThunk,
+    profile,
+    isAuth,
+    status,
+    updateStatusProfileThunk,
+    isOwner,
   } = props;
 
   return (
@@ -16,6 +20,7 @@ export const Profile = (props) => {
         isAuth={isAuth}
         status={status}
         updateStatusProfileThunk={updateStatusProfileThunk}
+        isOwner={isOwner}
       />
       <MyPostsContainer />
     </main>

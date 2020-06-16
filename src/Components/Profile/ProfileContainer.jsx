@@ -41,6 +41,7 @@ class ProfileContainer extends React.Component {
 
     return (
       <Profile
+        isOwner={!this.props.match.params.userId}
         profile={profile}
         status={status}
         updateStatusProfileThunk={updateStatusProfileThunk}
