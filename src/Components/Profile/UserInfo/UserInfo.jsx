@@ -35,7 +35,6 @@ export const UserInfo = (props) => {
           alt="user avatar"
         />
         <p>{profile.fullName}</p>
-        <p>{profile.aboutMe}</p>
         {isOwner && (
         <div className="field">
           <div className="file is-small">
@@ -57,7 +56,7 @@ export const UserInfo = (props) => {
           </div>
         </div>
         )}
-
+        <ProfileData profile={profile} />
         <ProfileStatusWithHooks
           status={status}
           updateStatusProfileThunk={updateStatusProfileThunk}
@@ -67,3 +66,45 @@ export const UserInfo = (props) => {
     </div>
   );
 };
+
+const ProfileData = ({ profile }) => (
+  <div>
+    <div>
+      <b>Looking for a job: </b>
+      {profile.lookingForAJob ? 'Yes' : 'No'}
+    </div>
+    {profile.lookingForAJob && (
+    <div>
+      <b>My professionl skills: </b>
+      {profile.lookingForAJobDescription}
+    </div>
+    )}
+    <div>
+      <b>About me: </b>
+      {profile.aboutMe}
+    </div>
+    <div>
+      <b>Contacts: </b>
+      {' '}
+      {Object.keys(profile.contacts)
+        .map((key) => (
+          <Contact
+            key={key}
+            contactTitle={key}
+            contactValue={profile.contacts[key]}
+          />
+        ))}
+    </div>
+  </div>
+);
+
+const Contact = ({ contactTitle, contactValue }) => (
+  <div className="userInfo__contacts">
+
+    {contactTitle}
+    :
+    {' '}
+
+    {contactValue}
+  </div>
+);

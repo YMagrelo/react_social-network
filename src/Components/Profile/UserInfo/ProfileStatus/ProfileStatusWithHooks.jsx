@@ -32,6 +32,7 @@ export const ProfileStatusWithHooks = (props) => {
 
   return (
     <div className="profileStatus">
+      <b>Status: </b>
       {!editMode
         ? <span className="profileStatus__value" onClick={activateMode}>{status || 'status is not defined'}</span>
         : (
