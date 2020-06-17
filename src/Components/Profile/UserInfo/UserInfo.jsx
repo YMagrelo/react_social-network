@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useState } from 'react';
 import './UserInfo.scss';
 import { Preloader } from '../../Common/Preloader/Preloader';
 import userLogo from '../../../assets/images/user.png';
@@ -14,6 +14,8 @@ export const UserInfo = (props) => {
     isOwner,
     savePhoto,
   } = props;
+
+  const [editMode, setEditMode] = useState(false);
 
   if (!profile) {
     return <Preloader />;
@@ -56,7 +58,15 @@ export const UserInfo = (props) => {
           </div>
         </div>
         )}
-        <ProfileData profile={profile} />
+        {isOwner && (
+        <button
+          type="button"
+          onClick={() => setEditMode(!editMode)}
+        >
+          Update your information
+        </button>
+        )}
+        {editMode ? <ProfileDataForm profile={profile} /> : <ProfileData profile={profile} />}
         <ProfileStatusWithHooks
           status={status}
           updateStatusProfileThunk={updateStatusProfileThunk}
@@ -96,6 +106,10 @@ const ProfileData = ({ profile }) => (
         ))}
     </div>
   </div>
+);
+
+const ProfileDataForm = ({ profile }) => (
+  <div>{profile.fullName}</div>
 );
 
 const Contact = ({ contactTitle, contactValue }) => (
