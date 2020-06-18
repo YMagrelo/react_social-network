@@ -1,3 +1,4 @@
+/* eslint-disable react/sort-comp */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 import React from 'react';
@@ -10,10 +11,11 @@ import {
   getUserProfileThunkCreator,
   getStatusProfileThunkCreator,
   updateStatusProfileThunkCreator,
+  savePhotoTC,
 } from '../../redux/reducers/profileReducer';
 
 class ProfileContainer extends React.Component {
-  componentDidMount() {
+  refreshProfile() {
     let { userId } = this.props.match.params;
     const { getUserProfileThunk, getStatusProfileThunk } = this.props;
 
@@ -25,14 +27,26 @@ class ProfileContainer extends React.Component {
     getStatusProfileThunk(userId);
   }
 
+  componentDidMount() {
+    this.refreshProfile();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.match.params.userId !== prevProps.match.params.userId) {
+      this.refreshProfile();
+    }
+  }
+
   render() {
     const { profile, status, updateStatusProfileThunk } = this.props;
 
     return (
       <Profile
+        isOwner={!this.props.match.params.userId}
         profile={profile}
         status={status}
         updateStatusProfileThunk={updateStatusProfileThunk}
+        savePhoto={this.props.savePhoto}
       />
     );
   }
@@ -47,6 +61,7 @@ const mapDispatchToProps = (dispatch) => ({
   getUserProfileThunk: (userId) => dispatch(getUserProfileThunkCreator(userId)),
   getStatusProfileThunk: (userId) => dispatch(getStatusProfileThunkCreator(userId)),
   updateStatusProfileThunk: (status) => dispatch(updateStatusProfileThunkCreator(status)),
+  savePhoto: (file) => dispatch(savePhotoTC(file)),
 });
 
 export default compose(

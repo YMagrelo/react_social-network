@@ -1,4 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import './Login.scss';
@@ -32,7 +31,7 @@ const Login = (props) => {
 
 const maxLength30 = maxLengthCreator(30);
 const LoginForm = (props) => {
-  const { handleSubmit, isAuth } = props;
+  const { handleSubmit, isAuth, error } = props;
 
   return (
     <form className="login__form" onSubmit={handleSubmit}>
@@ -61,7 +60,7 @@ const LoginForm = (props) => {
           validate={[required]}
         />
       </div>
-      {props.error && <div className="login__generalError">{props.error}</div>}
+      {error && <div className="login__generalError">{error}</div>}
       <div className="login__login-button">
         {isAuth ? (
           <button

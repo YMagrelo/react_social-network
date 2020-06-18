@@ -6,9 +6,8 @@ import { Post } from './Post/Post';
 import { required, maxLengthCreator } from '../../../utilites/validators';
 import { Textarea } from '../../Common/FormsControl/Textarea';
 
-export const MyPosts = (props) => {
+export const MyPosts = React.memo((props) => {
   const { posts, sendPost } = props;
-
   const addNewPost = (values) => {
     sendPost(values.addPost);
   };
@@ -17,12 +16,12 @@ export const MyPosts = (props) => {
     <div className="postList">
       <h3>My Posts</h3>
       <AddPostFormReducer onSubmit={addNewPost} />
-      {posts.map((post) => (
+      {[...posts].reverse().map((post) => (
         <Post message={post.post} likesCount={post.likes} key={post.id} />
       ))}
     </div>
   );
-};
+});
 
 const maxLength10 = maxLengthCreator(10);
 
