@@ -58,15 +58,16 @@ export const UserInfo = (props) => {
           </div>
         </div>
         )}
-        {isOwner && (
-        <button
-          type="button"
-          onClick={() => setEditMode(!editMode)}
-        >
-          Update your information
-        </button>
-        )}
-        {editMode ? <ProfileDataForm profile={profile} /> : <ProfileData profile={profile} />}
+        {editMode
+          ? <ProfileDataForm profile={profile} />
+          : (
+            <ProfileData
+              profile={profile}
+              isOwner={isOwner}
+              editMode={editMode}
+              setEditMode={setEditMode}
+            />
+          )}
         <ProfileStatusWithHooks
           status={status}
           updateStatusProfileThunk={updateStatusProfileThunk}
@@ -77,8 +78,19 @@ export const UserInfo = (props) => {
   );
 };
 
-const ProfileData = ({ profile }) => (
+const ProfileData = ({
+  profile, isOwner, editMode, setEditMode,
+}) => (
   <div>
+    {isOwner && (
+    <button
+      type="button"
+      onClick={() => setEditMode(!editMode)}
+      className="button is-small"
+    >
+      Edit
+    </button>
+    )}
     <div>
       <b>Looking for a job: </b>
       {profile.lookingForAJob ? 'Yes' : 'No'}
