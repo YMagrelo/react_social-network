@@ -5,6 +5,7 @@ import './UserInfo.scss';
 import { Preloader } from '../../Common/Preloader/Preloader';
 import userLogo from '../../../assets/images/user.png';
 import { ProfileStatusWithHooks } from './ProfileStatus/ProfileStatusWithHooks';
+import ProfileDataForm from './ProfileDataForm';
 
 export const UserInfo = (props) => {
   const {
@@ -36,7 +37,6 @@ export const UserInfo = (props) => {
           src={profile.photos.large !== null ? profile.photos.large : userLogo}
           alt="user avatar"
         />
-        <p>{profile.fullName}</p>
         {isOwner && (
         <div className="field">
           <div className="file is-small">
@@ -59,13 +59,12 @@ export const UserInfo = (props) => {
         </div>
         )}
         {editMode
-          ? <ProfileDataForm profile={profile} />
+          ? <ProfileDataForm profile={profile} isOwner={isOwner} />
           : (
             <ProfileData
               profile={profile}
               isOwner={isOwner}
-              editMode={editMode}
-              setEditMode={setEditMode}
+              goToEditMode={setEditMode}
             />
           )}
         <ProfileStatusWithHooks
@@ -79,18 +78,19 @@ export const UserInfo = (props) => {
 };
 
 const ProfileData = ({
-  profile, isOwner, editMode, setEditMode,
+  profile, isOwner, goToEditMode,
 }) => (
   <div>
     {isOwner && (
     <button
       type="button"
-      onClick={() => setEditMode(!editMode)}
+      onClick={() => goToEditMode(true)}
       className="button is-small"
     >
       Edit
     </button>
     )}
+    <p>{profile.fullName}</p>
     <div>
       <b>Looking for a job: </b>
       {profile.lookingForAJob ? 'Yes' : 'No'}
@@ -118,10 +118,6 @@ const ProfileData = ({
         ))}
     </div>
   </div>
-);
-
-const ProfileDataForm = ({ profile }) => (
-  <div>{profile.fullName}</div>
 );
 
 const Contact = ({ contactTitle, contactValue }) => (
