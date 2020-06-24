@@ -55,7 +55,7 @@ export const profileReducer = (state = initialState, action) => {
 
 export const sendPostActionCreator = (addPost) => ({ type: ADD_POST, addPost });
 
-const setUserProfileActionCreator = (profile) => ({
+const setUserProfileAC = (profile) => ({
   type: SET_USER_PROFILE,
   profile,
 });
@@ -71,9 +71,9 @@ const setPhotoSuccesAC = (photos) => ({
 });
 
 export const getUserProfileThunkCreator = (userId) => async (dispatch) => {
-  const response = await usersAPI.getUserProfile(userId);
+  const response = await profileAPI.getUserProfile(userId);
 
-  dispatch(setUserProfileActionCreator(response.data));
+  dispatch(setUserProfileAC(response.data));
 };
 
 export const getStatusProfileThunkCreator = (userId) => async (dispatch) => {
@@ -95,5 +95,14 @@ export const savePhotoTC = (file) => async (dispatch) => {
 
   if (response.data.resultCode === 0) {
     dispatch(setPhotoSuccesAC(response.data.data.photos));
+  }
+};
+
+export const saveProfileTC = (profile) => async (dispatch, getState) => {
+  const { userId } = getState().auth;
+
+  const response = await profileAPI.saveProfile(profile);
+  if (response.data.resultCode === 0) {
+    dispatch(setUserProfileAC(userId));
   }
 };

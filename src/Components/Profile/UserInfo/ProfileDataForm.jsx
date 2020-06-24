@@ -6,11 +6,10 @@ import { createField, Input } from '../../Common/FormsControl/Input';
 import { Textarea } from '../../Common/FormsControl/Textarea';
 
 
-const ProfileDataForm = ({ profile }) => (
-  <form className="profileDataForm">
+const ProfileDataForm = ({ handleSubmit }) => (
+  <form className="profileDataForm" onSubmit={handleSubmit}>
     <button
-      type="button"
-      onClick={() => {}}
+      type="submit"
       className="button is-small"
     >
       Save
@@ -37,20 +36,19 @@ const ProfileDataForm = ({ profile }) => (
     </div>
     <div>
       <b>About me: </b>
-      {profile.aboutMe}
       {createField('About me', 'aboutMe', [], Textarea)}
     </div>
     <div>
       <b>Contacts: </b>
       {' '}
       {/* {Object.keys(profile.contacts)
-        .map((key) => (
-          <Contact
-            key={key}
-            contactTitle={key}
-            contactValue={profile.contacts[key]}
-          />
-        ))} */}
+          .map((key) => (
+            <Contact
+              key={key}
+              contactTitle={key}
+              contactValue={profile.contacts[key]}
+            />
+          ))} */}
     </div>
   </form>
 );

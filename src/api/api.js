@@ -34,6 +34,11 @@ export const profileAPI = {
         },
       });
   },
+
+  saveProfile(profile) {
+    return instance
+      .put('profile', { profile });
+  },
 };
 
 export const usersAPI = {
@@ -51,11 +56,6 @@ export const usersAPI = {
   unfollow(userId) {
     return instance
       .delete(`follow/${userId}`);
-  },
-
-  getUserProfile(userId) {
-    console.warn('Obsolete method. Please use profileAPI object');
-    return profileAPI.getUserProfile(userId);
   },
 };
 

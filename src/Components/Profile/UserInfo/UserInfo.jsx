@@ -14,6 +14,7 @@ export const UserInfo = (props) => {
     updateStatusProfileThunk,
     isOwner,
     savePhoto,
+    saveProfile,
   } = props;
 
   const [editMode, setEditMode] = useState(false);
@@ -26,6 +27,11 @@ export const UserInfo = (props) => {
     if (e.target.files.length) {
       savePhoto(e.target.files[0]);
     }
+  };
+
+  const onSubmit = (formData) => {
+    saveProfile(formData);
+    setEditMode(false);
   };
 
   return (
@@ -59,7 +65,14 @@ export const UserInfo = (props) => {
         </div>
         )}
         {editMode
-          ? <ProfileDataForm profile={profile} isOwner={isOwner} />
+          ? (
+            <ProfileDataForm
+              profile={profile}
+              isOwner={isOwner}
+              onSubmit={onSubmit}
+              initialValues={profile}
+            />
+          )
           : (
             <ProfileData
               profile={profile}
