@@ -5,6 +5,7 @@ import './UserInfo.scss';
 import { Preloader } from '../../Common/Preloader/Preloader';
 import userLogo from '../../../assets/images/user.png';
 import { ProfileStatusWithHooks } from './ProfileStatus/ProfileStatusWithHooks';
+import ProfileDataForm from './ProfileDataForm';
 
 export const UserInfo = (props) => {
   const {
@@ -13,6 +14,7 @@ export const UserInfo = (props) => {
     updateStatusProfileThunk,
     isOwner,
     savePhoto,
+    saveProfile,
   } = props;
 
   const [editMode, setEditMode] = useState(false);
@@ -27,6 +29,11 @@ export const UserInfo = (props) => {
     }
   };
 
+  const onSubmit = (formData) => {
+    saveProfile(formData);
+    setEditMode(false);
+  };
+
   return (
     <div className="userInfo">
       <div className="userInfo__heading" />
@@ -36,7 +43,6 @@ export const UserInfo = (props) => {
           src={profile.photos.large !== null ? profile.photos.large : userLogo}
           alt="user avatar"
         />
-        <p>{profile.fullName}</p>
         {isOwner && (
         <div className="field">
           <div className="file is-small">
@@ -58,15 +64,22 @@ export const UserInfo = (props) => {
           </div>
         </div>
         )}
-        {isOwner && (
-        <button
-          type="button"
-          onClick={() => setEditMode(!editMode)}
-        >
-          Update your information
-        </button>
-        )}
-        {editMode ? <ProfileDataForm profile={profile} /> : <ProfileData profile={profile} />}
+        {editMode
+          ? (
+            <ProfileDataForm
+              profile={profile}
+              isOwner={isOwner}
+              onSubmit={onSubmit}
+              initialValues={profile}
+            />
+          )
+          : (
+            <ProfileData
+              profile={profile}
+              isOwner={isOwner}
+              goToEditMode={setEditMode}
+            />
+          )}
         <ProfileStatusWithHooks
           status={status}
           updateStatusProfileThunk={updateStatusProfileThunk}
@@ -77,8 +90,20 @@ export const UserInfo = (props) => {
   );
 };
 
-const ProfileData = ({ profile }) => (
+const ProfileData = ({
+  profile, isOwner, goToEditMode,
+}) => (
   <div>
+    {isOwner && (
+    <button
+      type="button"
+      onClick={() => goToEditMode(true)}
+      className="button is-small"
+    >
+      Edit
+    </button>
+    )}
+    <p>{profile.fullName}</p>
     <div>
       <b>Looking for a job: </b>
       {profile.lookingForAJob ? 'Yes' : 'No'}
@@ -106,10 +131,6 @@ const ProfileData = ({ profile }) => (
         ))}
     </div>
   </div>
-);
-
-const ProfileDataForm = ({ profile }) => (
-  <div>{profile.fullName}</div>
 );
 
 const Contact = ({ contactTitle, contactValue }) => (
